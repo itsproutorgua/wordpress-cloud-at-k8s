@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/itsproutorg/wordpress-cloud-at-k8s">
+  <a href="https://github.com/itsproutorgua/wordpress-cloud-at-k8s">
     <!-- Please provide path to your logo here -->
     <img src="docs/images/logo.svg" alt="Logo" width="100" height="100">
   </a>
@@ -11,20 +11,20 @@
   <a href="#about"><strong>Explore the docs »</strong></a>
   <br />
   <br />
-  <a href="https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+  <a href="https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
   ·
-  <a href="https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+  <a href="https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
   .
-  <a href="https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+  <a href="https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
 </div>
 
 <div align="center">
 <br />
 
-[![Project license](https://img.shields.io/github/license/itsproutorg/wordpress-cloud-at-k8s.svg?style=flat-square)](LICENSE)
+[![Project license](https://img.shields.io/github/license/itsproutorgua/wordpress-cloud-at-k8s.svg?style=flat-square)](LICENSE)
 
-[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-[![code with love by itsproutorg](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-itsproutorg-ff1414.svg?style=flat-square)](https://github.com/itsproutorg)
+[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![code with love by itsproutorg](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-itsproutorgua-ff1414.svg?style=flat-square)](https://github.com/itsproutorguaua)
 
 </div>
 
@@ -57,7 +57,7 @@ The project includes GitHub Actions pipelines for deploying Kubernetes and Tekto
 
 The repository is organized into several directories, including scripts for infrastructure setup, templates for pull requests, and a directory for committing WordPress definitions. Users can choose their cloud provider (AWS, GCP, or Azure) by selecting a flag in the repository.
 
-We welcome contributors to join the project and help improve the infrastructure setup and management process for WordPress sites in the cloud. If you're interested in contributing, please see our [Contributing Guidelines](CONTRIBUTING.md). If you have any questions or issues, please [open an issue](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues/new) on our GitHub repository.
+We welcome contributors to join the project and help improve the infrastructure setup and management process for WordPress sites in the cloud. If you're interested in contributing, please see our [Contributing Guidelines](CONTRIBUTING.md). If you have any questions or issues, please [open an issue](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/issues/new) on our GitHub repository.
 
 Thank you for your interest in WordPress Cloud at K8S!
 
@@ -114,7 +114,7 @@ To get started with WordPress Cloud at K8S, follow these steps:
     sh deploy_wordpress.sh
     ```
 
-For detailed instructions on each step, please see our [Wiki page](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/wiki).
+For detailed instructions on each step, please see our [Wiki page](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/wiki).
 
 
 ### Prerequisites
@@ -135,7 +135,7 @@ To install WordPress Cloud at K8S, follow these steps:
 1. Clone this repository:
 
     ```
-    git clone https://github.com/itsproutorgua/wordpress-cloud-at-k8s.git
+    git clone https://github.com/itsproutorguaua/wordpress-cloud-at-k8s.git
     ```
 
 2. Create a new repository on your GitHub account.
@@ -170,7 +170,7 @@ To install WordPress Cloud at K8S, follow these steps:
 
 8. After GitHub Actions completes, you can access your WordPress site by visiting the external IP address of your Kubernetes cluster.
 
-For more detailed instructions on how to configure GitHub Secrets and deploy your infrastructure, see our [Wiki page](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/wiki).
+For more detailed instructions on how to configure GitHub Secrets and deploy your infrastructure, see our [Wiki page](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/wiki).
 
 
 ## Usage
@@ -199,24 +199,24 @@ To deploy a new WordPress instance, follow these steps:
 
 ## Roadmap
 
-See the [open issues](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues) for a list of proposed features (and known issues).
 
-- [Top Feature Requests](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Top Bugs](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Newest Bugs](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- [Top Feature Requests](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Top Bugs](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Newest Bugs](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ## Support
 
 Reach out to the maintainer at one of the following places:
 
-- [GitHub issues](https://github.com/itsproutorg/wordpress-cloud-at-k8s/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
-- Contact options listed on [this GitHub profile](https://github.com/itsproutorg)
+- [GitHub issues](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
+- Contact options listed on [this GitHub profile](https://github.com/itsproutorgua)
 
 ## Project assistance
 
 If you want to say **thank you** or/and support active development of WordPress Cloud at K8S:
 
-- Add a [GitHub Star](https://github.com/itsproutorg/wordpress-cloud-at-k8s) to the project.
+- Add a [GitHub Star](https://github.com/itsproutorgua/wordpress-cloud-at-k8s) to the project.
 - Tweet about the WordPress Cloud at K8S.
 - Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or your personal blog.
 
@@ -231,9 +231,9 @@ Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you f
 
 ## Authors & contributors
 
-The original setup of this repository is by [IT Sprout](https://github.com/itsproutorg).
+The original setup of this repository is by [IT Sprout](https://github.com/itsproutorgua).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/itsproutorg/wordpress-cloud-at-k8s/contributors).
+For a full list of all authors and contributors, see [the contributors page](https://github.com/itsproutorgua/wordpress-cloud-at-k8s/contributors).
 
 ## Security
 
