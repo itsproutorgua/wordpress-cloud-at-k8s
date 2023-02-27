@@ -4,6 +4,7 @@
 
 ## Participants
 
+[ Maksym Blinov ] ( https://www.linkedin.com/in/blinovmaxim/ )
 
 
 ## How to add your LinkedIn profile
