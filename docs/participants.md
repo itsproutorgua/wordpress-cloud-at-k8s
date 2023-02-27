@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+Andrii Kovalchuk https://www.linkedin.com/in/andrii-k-6b338b24a/
 
 ## How to add your LinkedIn profile
 
