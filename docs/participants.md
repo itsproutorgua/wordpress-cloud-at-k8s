@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+https://www.linkedin.com/in/vlahodnyi-klapan/
 
 ## How to add your LinkedIn profile
 
