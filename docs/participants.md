@@ -1,7 +1,6 @@
 # Participant
 
-- [![Igor Postavnichiy](https://media.licdn.com/dms/image/D4D03AQHrse2NRrRi_w/profile-displayphoto-shrink_400_400/0/1676986271739?e=1683158400&v=beta&t=B3lTEp6w4mwTUFyExGNJNEqFJKDJ3TXxq_609shwDgM](https://www.linkedin.com/in/igor-postavnichiy/)
-
+- [![Igor Postavnichiy](https://media.licdn.com/dms/image/D4D03AQHrse2NRrRi_w/profile-displayphoto-shrink_400_400/0/1676986271739?e=1683158400&v=beta&t=B3lTEp6w4mwTUFyExGNJNEqFJKDJ3TXxq_609shwDgM)](https://www.linkedin.com/in/igor-postavnichiy/)
 
 1. Fork this repository.
 2. Create a new branch: `git checkout -b add-participant`.
