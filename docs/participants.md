@@ -3,8 +3,13 @@
 - [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
+<<<<<<< HEAD
 
 Igor Postavnichiy - (https://www.linkedin.com/in/igor-postavnichiy/)
+=======
+(https://www.linkedin.com/in/igor-postavnichiy/)
+
+>>>>>>> bd0583646c9147ebe309953e7a676f124758b340
 
 ## How to add your LinkedIn profile
 
