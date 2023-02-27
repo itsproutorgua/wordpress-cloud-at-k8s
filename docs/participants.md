@@ -4,6 +4,7 @@
 
 ## Participants
 
+Igor Postavnichiy - (https://www.linkedin.com/in/igor-postavnichiy/)
 
 
 ## How to add your LinkedIn profile
