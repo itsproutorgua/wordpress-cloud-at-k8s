@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+https://www.linkedin.com/in/roman-bokov-a04057242/ -Bokov Roman
 
 ## How to add your LinkedIn profile
 
