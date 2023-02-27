@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+https://www.linkedin.com/in/vladyslav-smirnov-32883a19a/
 
 ## How to add your LinkedIn profile
 
