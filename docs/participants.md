@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+https://www.linkedin.com/in/kostanproff/
 
 ## How to add your LinkedIn profile
 
