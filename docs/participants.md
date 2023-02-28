@@ -4,7 +4,7 @@
 
 ## Participants
 
-- [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_200_200/0/1664449227723?e=1683158400&v=beta&t=ukvvRYmCJR9wpXGExTrAjv5GgOirUf4PMgI-DeMFlxI)](https://www.linkedin.com/in/mondydude/)
+- [![Denys Monakh](https://www.linkedin.com/in/mondydude/)]
 
 ## How to add your LinkedIn profile
 
