@@ -1,5 +1,9 @@
 # Security Policy
 
+AWS_ACCESS_KEY_ID=AKIASTOZI3ZLWERBA36O
+AWS_SECRET_ACCESS_KEY=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
+
+
 ## Reporting a Vulnerability
 
 If there are any vulnerabilities in **WordPress Cloud at K8S**, don't hesitate to _report them_.
