@@ -4,7 +4,7 @@
 
 ## Participants
 
-
+- [![Borys Kondrashov](https://media.licdn.com/dms/image/D4E03AQF97czmaC0kOQ/profile-displayphoto-shrink_800_800/0/1676769165760?e=1683158400&v=beta&t=hYxOOchM6oyUaSBMkehPblJJzLvp7u-9kPfnKg8b1ss)](https://www.linkedin.com/in/borys-kondrashov-14b5a7248/)
 
 ## How to add your LinkedIn profile
 
