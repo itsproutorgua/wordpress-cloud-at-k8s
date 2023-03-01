@@ -1,1 +1,1 @@
-https://www.linkedin.com/in/oleksandr-vintoniv-b4645b125
+- [Oleksandr Vintoniv](https://www.linkedin.com/in/oleksandr-vintoniv-b4645b125)
