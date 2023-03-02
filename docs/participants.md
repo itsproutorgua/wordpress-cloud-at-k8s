@@ -1,10 +1,10 @@
 # Mentors
 
 - [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
-- [![Sofiia Kuplevatska](https://media.licdn.com/dms/image/D4E35AQEaMgVI386pNA/profile-framedphoto-shrink_400_400/0/1650314774252?e=1678320000&v=beta&t=s-dDz40es1ZsFWXSsk9BG4H581oyVvtTEUh4DNuoW-0)](https://www.linkedin.com/in/skuplevatska/)
+
 
 ## Participants
-
+- [![Sofiia Kuplevatska](https://media.licdn.com/dms/image/D4E35AQEaMgVI386pNA/profile-framedphoto-shrink_400_400/0/1650314774252?e=1678320000&v=beta&t=s-dDz40es1ZsFWXSsk9BG4H581oyVvtTEUh4DNuoW-0)](https://www.linkedin.com/in/skuplevatska/)
 
 
 ## How to add your LinkedIn profile
