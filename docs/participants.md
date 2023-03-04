@@ -4,7 +4,7 @@
 
 ## Participants
 
-- [![Vladyslav Smirnov](https://media.licdn.com/dms/image/D4D03AQEeNHdhozLzrQ/profile-displayphoto-shrink_200_200/0/1677576469790?e=1683158400&v=beta&t=xf1RMlWGKBH-CBnY_k4o079rQngpbwx53Ha1jZh2ipc)](https://www.linkedin.com/in/vladyslav-smirnov-inko-vlad/)
+- [![Oleg Litvinenko](https://media.licdn.com/dms/image/D4D03AQEBOBe6YO-BMw/profile-displayphoto-shrink_200_200/0/1677947199073?e=1683158400&v=beta&t=u_kz0NBX8qvmS4TOMHuM0Nq3SZzoljkuy_C35b_3IAw)](https://www.linkedin.com/in/oleh-lytvynenko-325879268/)
 
 ## How to add your LinkedIn profile
 
