@@ -4,6 +4,9 @@
 
 ## Participants
 
+- [![Konstantin Kozulko](https://media.licdn.com/dms/image/D4D03AQEPAkE4FWmHbg/profile-displayphoto-shrink_800_800/0/1676424480957?e=1683158400&v=beta&t=XbGIPlbRQbuQ_ysm-7v2bTTiME82OMtXripJ-3DvCFI)](https://www.linkedin.com/in/kostanproff/)
+
+
 - [![Vladyslav Smirnov](https://media.licdn.com/dms/image/D4D03AQEeNHdhozLzrQ/profile-displayphoto-shrink_200_200/0/1677576469790?e=1683158400&v=beta&t=xf1RMlWGKBH-CBnY_k4o079rQngpbwx53Ha1jZh2ipc)](https://www.linkedin.com/in/vladyslav-smirnov-inko-vlad/)
 
 ## How to add your LinkedIn profile
