@@ -3,7 +3,7 @@
 - [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
-https://www.linkedin.com/in/leonid-pistryi-141273199/)
+- [![Leonid Pistryi](https://media.licdn.com/dms/image/C5603AQGoSA7jjbIPnQ/profile-displayphoto-shrink_800_800/0/1575648450741?e=1683158400&v=beta&t=w6AmYWjt-ZgVI1YDidQXaHC_B3X3CPxrkoLDqx3CqEM)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
 
 ## How to add your LinkedIn profile
 
