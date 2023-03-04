@@ -3,6 +3,7 @@
 - [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
+- [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
 
 
