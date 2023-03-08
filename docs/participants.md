@@ -4,6 +4,8 @@
 
 ## Participants
 
+- [![Antonina Osipenko](https://media.licdn.com/dms/image/C4D03AQEfHtgt4LvPGg/profile-displayphoto-shrink_200_200/0/1639139476820?e=1683763200&v=beta&t=Gr_KXlSs11t18ka7ygu7zDn4I2M4m7Lw-zWrVrbPhQo)](https://www.linkedin.com/in/antonina-osypenko-88669121b/)
+
 
 
 ## How to add your LinkedIn profile
