@@ -9,6 +9,9 @@
 
 - [![Leonid Pistryi](https://media.licdn.com/dms/image/C5603AQGoSA7jjbIPnQ/profile-displayphoto-shrink_800_800/0/1575648450741?e=1683158400&v=beta&t=w6AmYWjt-ZgVI1YDidQXaHC_B3X3CPxrkoLDqx3CqEM)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
 
+
+- [![Maksym Blinov](https://media.licdn.com/dms/image/C4E03AQGYbF2bsisu0Q/profile-displayphoto-shrink_800_800/0/1655127079289?e=1683158400&v=beta&t=8eaTMDLDOIe9gXRehAwVa2ctjn8jhYfcnkGs1OX5E04)](https://www.linkedin.com/in/blinovmaxim/)
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
