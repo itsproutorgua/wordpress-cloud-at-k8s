@@ -6,6 +6,9 @@
 
 - [![Vladyslav Smirnov](https://media.licdn.com/dms/image/D4D03AQEeNHdhozLzrQ/profile-displayphoto-shrink_200_200/0/1677576469790?e=1683158400&v=beta&t=xf1RMlWGKBH-CBnY_k4o079rQngpbwx53Ha1jZh2ipc)](https://www.linkedin.com/in/vladyslav-smirnov-inko-vlad/)
 
+
+- [![Leonid Pistryi](https://media.licdn.com/dms/image/C5603AQGoSA7jjbIPnQ/profile-displayphoto-shrink_800_800/0/1575648450741?e=1683158400&v=beta&t=w6AmYWjt-ZgVI1YDidQXaHC_B3X3CPxrkoLDqx3CqEM)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
