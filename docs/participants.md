@@ -12,6 +12,8 @@
 
 - [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
+- [![Igor Postavnichiy](https://media.licdn.com/dms/image/D4D03AQH1jYjkB-xbzg/profile-displayphoto-shrink_400_400/0/1678723970229?e=1684368000&v=beta&t=s1XtnDgdrs38Rb563mUe1gk14vvuq2AlY6p08zqBseg)](https://www.linkedin.com/in/igor-postavnichiy/)
+
 
 ## How to add your LinkedIn profile
 
