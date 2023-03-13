@@ -6,6 +6,13 @@
 
 - [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_200_200/0/1664449227723?e=1683158400&v=beta&t=ukvvRYmCJR9wpXGExTrAjv5GgOirUf4PMgI-DeMFlxI)](https://www.linkedin.com/in/mondydude/)
 
+
+- [![Leonid Pistryi](https://media.licdn.com/dms/image/C5603AQGoSA7jjbIPnQ/profile-displayphoto-shrink_800_800/0/1575648450741?e=1683158400&v=beta&t=w6AmYWjt-ZgVI1YDidQXaHC_B3X3CPxrkoLDqx3CqEM)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
+
+
+- [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
+
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
