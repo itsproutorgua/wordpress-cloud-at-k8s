@@ -13,6 +13,9 @@
 - [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
 
+- [![Oleg Litvinenko](https://media.licdn.com/dms/image/D4D03AQEBOBe6YO-BMw/profile-displayphoto-shrink_800_800/0/1677947199073?e=1684368000&v=beta&t=9U4Hq9pHLKWM--JtTEZNO_8befXgaJmaEluSM6mV29Q)](https://www.linkedin.com/in/oleh-lytvynenko-325879268/)
+
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
