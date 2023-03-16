@@ -13,6 +13,8 @@
 - [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
 
+- [![Konstantin Kozulko](https://avatars.githubusercontent.com/u/124177450?s=200&u=ec62b6ec75bff39972194ac783a0ac8b4cdc9f68&v=4)](https://www.linkedin.com/in/kostanproff/)
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
