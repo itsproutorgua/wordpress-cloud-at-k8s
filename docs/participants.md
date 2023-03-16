@@ -12,6 +12,7 @@
 
 - [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
+- [![Oleksandr Vintoniv](https://avatars.githubusercontent.com/u/126666889?s=400&u=974be6da18095ddeaf0a27f0ba360ed376e9040b&v=4)](https://www.linkedin.com/in/oleksandr-vintoniv-b4645b125)
 
 ## How to add your LinkedIn profile
 
