@@ -12,6 +12,7 @@
 
 - [![Serhii Karpynskyi](https://media.licdn.com/dms/image/D4D03AQGQUjnMBNqrTQ/profile-displayphoto-shrink_200_200/0/1677926455760?e=1683158400&v=beta&t=f5bkpl2-m6RJsGedxCJhXDrfFx4-ycilitcXq-fZ1ts)](https://www.linkedin.com/in/sergo03/)
 
+
 - [![Konstantin Kozulko](https://media.licdn.com/dms/image/D4D35AQHZv4Ufo7Jq3g/profile-framedphoto-shrink_400_400/0/1676424483736?e=1679594400&v=beta&t=WBMqj0Vh3LJtBp7pPH5japXFbfIPFDwTFUKLb7Pca6A)](https://www.linkedin.com/in/kostanproff/)
 
 
