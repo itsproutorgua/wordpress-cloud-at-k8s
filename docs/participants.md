@@ -24,6 +24,8 @@
 - [![Oleg Litvinenko](https://media.licdn.com/dms/image/D4D03AQEBOBe6YO-BMw/profile-displayphoto-shrink_800_800/0/1677947199073?e=1684368000&v=beta&t=9U4Hq9pHLKWM--JtTEZNO_8befXgaJmaEluSM6mV29Q)](https://www.linkedin.com/in/oleh-lytvynenko-325879268/)
 
 
+- [![Konstantin Kozulko](https://avatars.githubusercontent.com/u/124177450?s=200&u=ec62b6ec75bff39972194ac783a0ac8b4cdc9f68&v=4)](https://www.linkedin.com/in/kostanproff/)
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
