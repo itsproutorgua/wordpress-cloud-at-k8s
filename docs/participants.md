@@ -18,6 +18,9 @@
 - [![Maksym Blinov](https://media.licdn.com/dms/image/C4E03AQGYbF2bsisu0Q/profile-displayphoto-shrink_800_800/0/1655127079289?e=1683158400&v=beta&t=8eaTMDLDOIe9gXRehAwVa2ctjn8jhYfcnkGs1OX5E04)](https://www.linkedin.com/in/blinovmaxim/)
 
 
+- [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_200_200/0/1664449227723?e=1683158400&v=beta&t=ukvvRYmCJR9wpXGExTrAjv5GgOirUf4PMgI-DeMFlxI)](https://www.linkedin.com/in/mondydude/)
+
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
