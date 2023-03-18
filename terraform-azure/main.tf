@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.95.0"
+      version = "=3.47.0"
     }
   }
 }
@@ -45,10 +45,6 @@ resource "azurerm_kubernetes_cluster" "product" {
   tags = {
     Environment = "Production"
   }
-}
-
-output "client_certificate" {
-  value = azurerm_kubernetes_cluster.product.kube_config.0.client_certificate
 }
 
 output "kube_config" {
