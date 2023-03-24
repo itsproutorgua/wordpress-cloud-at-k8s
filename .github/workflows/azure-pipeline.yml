@@ -7,6 +7,12 @@ on:
     branches:
     - main
 
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
 permissions:
   id-token: write
   contents: read
@@ -15,14 +21,24 @@ permissions:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform-azure
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Terraform Format
-      id: fmt
-      run: terraform fmt
+    - name: Copy script files
+      uses: actions/upload-artifact@v3
+      with:
+        name: script-files
+        path: ./terraform-azure/scripts/
+
+    - name: Download script files
+      uses: actions/download-artifact@v3
+      with:
+        name: script-files
 
     - name: 'Az CLI login using OIDC'
       uses: azure/login@v1
@@ -30,6 +46,15 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Create Storage
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform-azure/scripts
+      run: bash  $SCRIPT_DIR/create_storage.sh
+
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt
 
     - name: Terraform Init
       id: init
@@ -39,8 +64,10 @@ jobs:
       id: plan
       run: terraform plan -no-color
 
-    - name: Terraform Apply
+    - name: terraform apply
+      if: "!contains(github.event.head_commit.message, 'destroy')"
       run: terraform apply -auto-approve
 
     - name: Terraform Destroy
+      if: contains(github.event.head_commit.message, 'destroy')
       run: terraform destroy -auto-approve
