@@ -31,6 +31,10 @@
 
 - [![Konstantin Kozulko](https://avatars.githubusercontent.com/u/124177450?s=200&u=ec62b6ec75bff39972194ac783a0ac8b4cdc9f68&v=4)](https://www.linkedin.com/in/kostanproff/)
 
+
+- [![Oleksandr Vintoniv](https://avatars.githubusercontent.com/u/126666889?s=400&u=974be6da18095ddeaf0a27f0ba360ed376e9040b&v=4)](https://www.linkedin.com/in/oleksandr-vintoniv-b4645b125)
+
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
