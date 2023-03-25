@@ -15,7 +15,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        working-directory: ./terraform_gcp/terraform
 
     steps:
       - name: Checkout code
