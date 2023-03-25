@@ -1,4 +1,4 @@
-name: My-GithubActions-Basics
+name: Azure
 
 on:
   push:
