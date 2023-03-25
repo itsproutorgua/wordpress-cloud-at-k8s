@@ -29,17 +29,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Copy script files
-      uses: actions/upload-artifact@v3
-      with:
-        name: script-files
-        path: ./terraform-azure/scripts/
-
-    - name: Download script files
-      uses: actions/download-artifact@v3
-      with:
-        name: script-files
-
     - name: 'Az CLI login using OIDC'
       uses: azure/login@v1
       with:
@@ -67,9 +56,6 @@ jobs:
     - name: Terraform Apply
       if: "!contains(github.event.head_commit.message, 'destroy')"
       run: terraform apply -auto-approve
-
-#    - name: Terraform Apply
-#      run: terraform apply -auto-approve
 
     - name: Terraform Destroy
       if: contains(github.event.head_commit.message, 'destroy')
