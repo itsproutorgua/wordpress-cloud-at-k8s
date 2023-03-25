@@ -1,0 +1,45 @@
+name: Terraform deploy kubernetes cluster
+
+on:
+  push:
+    paths:
+      - 'terraform_gcp/**'
+      - '.github/workflows/gcp-terraform_deploy_kubernetes.yml'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  terraform_deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: latest
+          terraform_wrapper: false
+
+      - name: Decode credentials
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > credentials_file.json
+
+      - name: Terraform Apply if commit has message
+        run: |
+          if echo "${{ github.event.head_commit.message }}" | grep -q "TF_APPLY"; then
+            echo "Commit message contains 'TF_APPLY'"
+            terraform init
+            terraform apply -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -auto-approve
+          elif echo "${{ github.event.head_commit.message }}" | grep -q "TF_DESTROY"; then
+            echo "Commit message contains 'TF_DESTROY'"
+            terraform init -reconfigure
+            terraform destroy -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -auto-approve
+          else
+            echo "Commit message does not contain 'TF_APPLY' or 'TF_DESTROY'"
+          fi
