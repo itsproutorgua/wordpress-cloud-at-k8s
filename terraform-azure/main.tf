@@ -3,8 +3,7 @@ resource "azurerm_resource_group" "product" {
   name     = "product"
   location = var.resource_group_location
 }
-
-
+#asd
 resource "azurerm_network_security_group" "product" {
   name                = "product-security-group"
   location            = azurerm_resource_group.product.location
@@ -56,24 +55,17 @@ resource "azurerm_virtual_network" "product" {
 }
 
 resource "azurerm_kubernetes_cluster" "product" {
-  name                = "product-aks1"
+  name                = var.cluster_name
   location            = azurerm_resource_group.product.location
   resource_group_name = azurerm_resource_group.product.name
-  dns_prefix          = "productaks1"
+  dns_prefix          = var.cluster_name
+  kubernetes_version  = var.kubernetes_version
 
   default_node_pool {
     name       = "default"
     node_count = var.agent_count
     vm_size    = "Standard_B2s"
   }
-
-  # linux_profile {
-  #   admin_username = "ubuntu"
-
-  #   ssh_key {
-  #     key_data = file(var.ssh_public_key)
-  #   }
-  # }
 
   identity {
     type = "SystemAssigned"
@@ -84,8 +76,7 @@ resource "azurerm_kubernetes_cluster" "product" {
   }
 }
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.product.kube_config_raw
-
-  sensitive = true
+resource "local_file" "kubeconfig" {
+  filename = "${path.module}/kubeconfig"
+  content  = azurerm_kubernetes_cluster.product.kube_config_raw
 }

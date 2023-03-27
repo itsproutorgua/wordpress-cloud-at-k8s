@@ -1,9 +1,10 @@
-name: Azure
+name: My-GithubActions-Basics
 
 on:
   push:
     paths:
     - 'terraform-azure/**'
+    - '.github/workflows/azure-pipeline.yml'
     branches:
     - main
 
@@ -12,11 +13,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-permissions:
-  id-token: write
-  contents: read
-  pull-requests: write
+  KUBECONFIG: ${{ github.workspace }}/terraform-azure/kubeconfig
 
 jobs:
   terraform:
@@ -27,23 +24,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: 'Az CLI login using OIDC'
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      uses: actions/checkout@v3
 
     - name: Create Storage
       env:
         SCRIPT_DIR: ${{ github.workspace }}/terraform-azure/scripts
       run: bash  $SCRIPT_DIR/create_storage.sh
-
-    - name: Terraform Format
-      id: fmt
-      run: terraform fmt
 
     - name: Terraform Init
       id: init
@@ -57,6 +43,44 @@ jobs:
       if: "!contains(github.event.head_commit.message, 'destroy')"
       run: terraform apply -auto-approve
 
+
+    - name: Upload kubeconfig artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: kubeconfig
+        path: terraform-azure/kubeconfig 
+      
+
     - name: Terraform Destroy
       if: contains(github.event.head_commit.message, 'destroy')
       run: terraform destroy -auto-approve
+
+  terraform-CD:
+      needs: terraform
+      if: "!contains(github.event.head_commit.message, 'destroy')"
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: terraform-azure
+
+      steps:
+      - name: Clon Rep
+        uses: actions/checkout@v3
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Download kubeconfig
+        uses: actions/download-artifact@v3
+        with:
+          name: kubeconfig
+          path: terraform-azure
+    
+      - name: Apply Kubernetes manifest
+        run: kubectl apply -f hello-world.yml
+    
+      - name: Wait for 15 seconds()
+        run: sleep 20s
+
+      - name: Check Service
+        run: kubectl get service
