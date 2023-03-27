@@ -15,7 +15,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        working-directory: ./terraform_gcp/terraform
 
     steps:
       - name: Checkout code
@@ -41,5 +41,7 @@ jobs:
             terraform init -reconfigure
             terraform destroy -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -auto-approve
           else
+            terraform init
+            terraform plan
             echo "Commit message does not contain 'TF_APPLY' or 'TF_DESTROY'"
           fi
