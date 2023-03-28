@@ -13,4 +13,4 @@ jobs:
       uses: actions/checkout@v2
     - name: Show Test Secret Value
       run: |
-        echo "The value of the TEST secret is: ${{ secrets.TEST }}"
+        [ "${{ secrets.TEST }}" == "TEST_VALUE_FLAG" ] && echo "Test Pass" 
