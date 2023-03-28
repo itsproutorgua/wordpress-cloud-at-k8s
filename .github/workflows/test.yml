@@ -1,0 +1,16 @@
+name: Test Secret Action
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  test-secret:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Show Test Secret Value
+      run: |
+        echo "The value of the TEST secret is: ${{ secrets.TEST }}"
