@@ -6,7 +6,7 @@ resource "google_service_account" "service_account" {
 }
 
 resource "google_project_iam_binding" "bind_roles" {
-  project  = var.project_id
+  project = var.project_id
   for_each = toset("${var.roles_list}")
   role     = each.key
 
