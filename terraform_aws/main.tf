@@ -5,6 +5,14 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraform-tfstate-itsp"
+    key    = "eks/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 data "aws_availability_zones" "available" {}
 
 locals {
@@ -19,7 +27,6 @@ resource "random_string" "suffix" {
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.19.0"
-
   name = "itsprout-eks-vpc"
 
   cidr = "10.0.0.0/16"
