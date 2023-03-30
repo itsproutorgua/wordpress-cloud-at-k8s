@@ -4,10 +4,14 @@ on:
   push:
     paths:
       - 'terraform_gcp/**'
-      - '.github/workflows/gcp-terraform_deploy_kubernetes.yml'
+      - '.github/workflows/deploy_gcp_kubernetes.yml'
     branches:
       - main
   workflow_dispatch:
+
+env:
+  BUCKET_NAME: gcp-bucket-sprout-1
+  SA_NAME: sprout-gcp@enhanced-victor-379417.iam.gserviceaccount.com
 
 jobs:
   terraform_deploy:
@@ -15,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform_gcp/terraform
+        working-directory: ./terraform_gcp
 
     steps:
       - name: Checkout code
@@ -30,18 +34,33 @@ jobs:
       - name: Decode credentials
         run: echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > credentials_file.json
 
+      - name: Authenticate with Google Cloud
+        run: |
+          gcloud config set account ${SA_NAME}
+          gcloud auth activate-service-account --key-file=credentials_file.json
+          gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Create bucket if dosn't exists
+        run: |
+          if [[ $(gsutil ls gs://${BUCKET_NAME} >/dev/null; echo $?) -eq 1 ]]; then
+            echo "===[ Bucket doesn't exist. Creating... ]==="
+            gsutil mb -l us-central1 -c Standard -p ${{ secrets.GCP_PROJECT_ID }} -b off gs://${BUCKET_NAME}
+          else
+            echo "===[ Bucket already exists ]==="
+          fi
+
       - name: Terraform Apply if commit has message
         run: |
           if echo "${{ github.event.head_commit.message }}" | grep -q "TF_APPLY"; then
-            echo "Commit message contains 'TF_APPLY'"
+            echo "===[ Commit message contains 'TF_APPLY' ]==="
             terraform init
             terraform apply -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -auto-approve
           elif echo "${{ github.event.head_commit.message }}" | grep -q "TF_DESTROY"; then
-            echo "Commit message contains 'TF_DESTROY'"
+            echo "===[ Commit message contains 'TF_DESTROY' ]==="
             terraform init -reconfigure
             terraform destroy -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -auto-approve
           else
+            echo "===[ Commit message doesn't contain 'TF_APPLY' or 'TF_DESTROY', run 'terraform plan' ]==="
             terraform init
-            terraform plan
-            echo "Commit message does not contain 'TF_APPLY' or 'TF_DESTROY'"
+            terraform plan -var="project_id=${{ secrets.GCP_PROJECT_ID }}"
           fi
