@@ -1,5 +1,4 @@
 name: My-GithubActions-Basics
-
 on:
   push:
     paths:
