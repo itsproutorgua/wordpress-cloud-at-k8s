@@ -3,9 +3,13 @@ name: "Terraform"
 
 on:
   push:
+    paths:
+    - 'terraform_aws/**'
+    - '.github/workflows/terraform.yml'
     branches:
-      - main
-
+    - main
+  workflow_dispatch:
+  
 jobs:
   terraform:
     name: "Terraform"
