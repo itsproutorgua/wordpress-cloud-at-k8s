@@ -5,6 +5,14 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraform-tfstate-itsp"
+    key    = "eks/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 data "aws_availability_zones" "available" {}
 
 locals {
@@ -67,7 +75,7 @@ module "eks" {
 
       min_size     = 1
       max_size     = 3
-      desired_size = 2
+      desired_size = 1
     }
 
     two = {
@@ -77,7 +85,7 @@ module "eks" {
 
       min_size     = 1
       max_size     = 2
-      desired_size = 2
+      desired_size = 1
     }
   }
 }
