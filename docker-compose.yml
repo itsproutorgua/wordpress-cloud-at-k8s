@@ -1,0 +1,77 @@
+version: "3"
+
+services:
+  #Database
+  db:
+    container_name: db
+    image: mysql
+    command: "--default-authentication-plugin=mysql_native_password"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secretWord
+      MYSQL_DATABASE: simpleWord
+      MYSQL_USER: simpleWord
+      MYSQL_PASSWORD: secretWord
+    expose:
+    - 3306
+    - 33060
+    volumes:
+    - db_data:/var/lib/mysql
+    networks:
+    - my_network
+  #Init-container
+  init-db:
+    image: mysql
+    command: /initproject.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: secretWord
+      MYSQL_DATABASE: simpleWord
+      MYSQL_USER: simpleWord
+      MYSQL_PASSWORD: secretWord
+    volumes:
+    - ./initproject.sh:/initproject.sh
+    depends_on:
+      db:
+        condition: service_started
+  #Application
+  wordpress:
+    depends_on:
+    - db
+    image: wordpress
+    ports:
+    - 80:80
+    volumes:
+    - db_data:/var/lib/mysql
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: simpleWord
+      WORDPRESS_DB_PASSWORD: secretWord
+      WORDPRESS_DB_NAME: simpleWord
+    networks:
+    - my_network
+  #WP-cli
+  cli:
+    image: wordpress:cli
+    restart: "on-failure:30"
+    hostname: wp_cli
+    volumes:
+    - db_data:/var/lib/mysql
+    volumes_from:
+    - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: simpleWord
+      WORDPRESS_DB_PASSWORD: secretWord
+      WORDPRESS_DB_NAME: simpleWord
+    depends_on:
+    - db
+    - wordpress
+    command: "wp --allow-root core install --url=localhost --title=\"ItSprout\" --admin_user=leonid --admin_password=leonid1234 --admin_email=leonidpisryi@gmail.com \n"
+    networks:
+    - my_network
+#Bridge
+volumes:
+  db_data:
+networks:
+  my_network:
+    driver: bridge
