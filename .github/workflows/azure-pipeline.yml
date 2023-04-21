@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - 'terraform-azure/**'
-      - '.github/workflows/terra_test.yml'
+      - '.github/workflows/azure-pipeline.yml'
     branches:
       - main  
   workflow_dispatch:
