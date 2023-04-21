@@ -1,21 +1,27 @@
+provider "azurerm" {
+  features {}
+  
+}
 terraform {
-  required_version = ">=1.0"
+  
 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~>3.0"
+      version = "3.47.0"
+      
+
     }
+    
   }
-
-  backend "azurerm" {
-    resource_group_name  = "microfostsitnamedtest"
-    storage_account_name = "storage123678test"
-    container_name       = "containername"
-    key                  = "terraform.containername"
-  }
+    backend "azurerm" {
+    resource_group_name  = "tfstate"
+    storage_account_name = "tfstateitsprout"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+    }
 }
 
-provider "azurerm" {
-  features {}
-}
+
+
+

@@ -1,48 +1,44 @@
-name: My-GithubActions-Basics
+name: WP_team_pipeline
 on:
   push:
     paths:
-    - 'terraform-azure/**'
-    - '.github/workflows/azure-pipeline.yml'
+      - 'terraform-azure/**'
+      - '.github/workflows/azure-pipeline.yml'
     branches:
-    - main
+      - main  
   workflow_dispatch:
-  
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   KUBECONFIG: ${{ github.workspace }}/terraform-azure/kubeconfig
-
 jobs:
-  terraform:
+  terraform-CI:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: terraform-azure
-
+      
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Clon Rep
+      uses: actions/checkout@v3  
 
     - name: Create Storage
       env:
         SCRIPT_DIR: ${{ github.workspace }}/terraform-azure/scripts
       run: bash  $SCRIPT_DIR/create_storage.sh
 
-    - name: Terraform Init
-      id: init
+    - name: terraform init
       run: terraform init
 
-    - name: Terraform Plan
+    - name: terraform plan
       id: plan
-      run: terraform plan -no-color
-
-    - name: Terraform Apply
+      run: terraform plan
+      
+    - name: terraform apply
       if: "!contains(github.event.head_commit.message, 'destroy')"
       run: terraform apply -auto-approve
-
 
     - name: Upload kubeconfig artifact
       uses: actions/upload-artifact@v3
@@ -50,37 +46,57 @@ jobs:
         name: kubeconfig
         path: terraform-azure/kubeconfig 
       
-
     - name: Terraform Destroy
       if: contains(github.event.head_commit.message, 'destroy')
       run: terraform destroy -auto-approve
 
   terraform-CD:
-      needs: terraform
-      if: "!contains(github.event.head_commit.message, 'destroy')"
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          working-directory: terraform-azure
+    needs: 
+      - terraform-CI
+    if: "!contains(github.event.head_commit.message, 'destroy') "
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform-azure
 
-      steps:
-      - name: Clon Rep
-        uses: actions/checkout@v3
+    steps:
+    - name: Clon Rep
+      uses: actions/checkout@v3
 
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v3
+    - name: Login to DockerHub
+      if: contains(github.event.head_commit.message, 'build')
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Download kubeconfig
-        uses: actions/download-artifact@v3
-        with:
-          name: kubeconfig
-          path: terraform-azure
-    
-      - name: Apply Kubernetes manifest
-        run: kubectl apply -f hello-world.yml
-    
-      - name: Wait for 15 seconds()
-        run: sleep 20s
+    - name: Build and Push Docker Image
+      if: contains(github.event.head_commit.message, 'build')
+      uses: docker/build-push-action@v4
+      with:
+        context: terraform-azure/
+        push: true
+        tags: maksymblinov/init_db:v1
 
-      - name: Check Service
-        run: kubectl get service
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Download kubeconfig
+      uses: actions/download-artifact@v3
+      with:
+        name: kubeconfig
+        path: terraform-azure
+   
+    - name: Apply Kubernetes manifest
+      run: kubectl apply -f init_db.yml
+
+    - name: Wait for 10 seconds()
+      run: sleep 10s
+
+    - name: Check Service
+      run: kubectl get service
+
+
+
+
+
