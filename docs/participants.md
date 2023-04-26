@@ -37,7 +37,7 @@ https://www.linkedin.com/in/mykola-kolot-763aa5267/
 
 - [![Mykola Kolot](https://media.licdn.com/dms/image/D4E03AQGVFeMxsMpyIA/profile-displayphoto-shrink_200_200/0/1677486349563?e=1686182400&v=beta&t=uPUnpY_2K3cTSCcuu73yoN9kjDMBWBqJfwl88ZrpihI)](https://www.linkedin.com/in/mykola-kolot-763aa5267/)
 
-
+    
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
