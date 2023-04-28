@@ -5,7 +5,8 @@ on:
       - 'terraform-azure/**'
       - '.github/workflows/azure-pipeline.yml'
     branches:
-      - main  
+      - main
+      - tekton_week2  
   workflow_dispatch:
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
