@@ -87,6 +87,11 @@ jobs:
         name: kubeconfig
         path: terraform-azure
    
+    - name: Install Tekton
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform-azure/scripts
+      run: bash  $SCRIPT_DIR/install-tekton.sh
+
     - name: Apply Kubernetes manifest
       run: kubectl apply -f init_db.yml
 
