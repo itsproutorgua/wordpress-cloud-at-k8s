@@ -3,7 +3,7 @@
 - [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
-
+https://www.linkedin.com/in/mykola-kolot-763aa5267/
 
 - [![Antonina Osipenko](https://media.licdn.com/dms/image/C4D03AQEfHtgt4LvPGg/profile-displayphoto-shrink_200_200/0/1639139476820?e=1683763200&v=beta&t=Gr_KXlSs11t18ka7ygu7zDn4I2M4m7Lw-zWrVrbPhQo)](https://www.linkedin.com/in/antonina-osypenko-88669121b/)
 
@@ -35,6 +35,9 @@
 - [![Oleksandr Vintoniv](https://avatars.githubusercontent.com/u/126666889?s=400&u=974be6da18095ddeaf0a27f0ba360ed376e9040b&v=4)](https://www.linkedin.com/in/oleksandr-vintoniv-b4645b125)
 
 
+- [![Mykola Kolot](https://media.licdn.com/dms/image/D4E03AQGVFeMxsMpyIA/profile-displayphoto-shrink_200_200/0/1677486349563?e=1686182400&v=beta&t=uPUnpY_2K3cTSCcuu73yoN9kjDMBWBqJfwl88ZrpihI)](https://www.linkedin.com/in/mykola-kolot-763aa5267/)
+
+    
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
