@@ -5,7 +5,8 @@ on:
       - 'terraform-azure/**'
       - '.github/workflows/azure-pipeline.yml'
     branches:
-      - main  
+      - main
+      - tekton_week2  
   workflow_dispatch:
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -87,6 +88,11 @@ jobs:
         name: kubeconfig
         path: terraform-azure
    
+    - name: Install Tekton
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform-azure/scripts
+      run: bash  $SCRIPT_DIR/install-tekton.sh
+
     - name: Apply Kubernetes manifest
       run: kubectl apply -f init_db.yml
 
