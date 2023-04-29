@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RESOURCE_GROUP_NAME=tfstate
-STORAGE_ACCOUNT_NAME=tfstateitsprout
+STORAGE_ACCOUNT_NAME=tfstateitsproutnew
 CONTAINER_NAME=tfstate
 
 # Authenticate with Azure using environment variables
