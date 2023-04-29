@@ -1,8 +1,8 @@
 #!/bin/bash
 
-RESOURCE_GROUP_NAME=tfstatewptetkonklass
-STORAGE_ACCOUNT_NAME=tfstateitsproutdevops
-CONTAINER_NAME=tfstatewptetkonklass
+RESOURCE_GROUP_NAME=tfstate
+STORAGE_ACCOUNT_NAME=tfstateitsprout
+CONTAINER_NAME=tfstate
 
 # Authenticate with Azure using environment variables
 az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID

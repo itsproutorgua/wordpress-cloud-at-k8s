@@ -15,9 +15,9 @@ terraform {
     
   }
     backend "azurerm" {
-    resource_group_name  = "tfstatewptetkonklass"
-    storage_account_name = "tfstateitsproutdevops"
-    container_name       = "tfstatewptetkonklass"
-    key                  = "terraform.tfstatewptetkonklass"
+    resource_group_name  = "tfstate"
+    storage_account_name = "tfstateitsprout"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
     }
 }
