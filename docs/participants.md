@@ -1,6 +1,6 @@
 # Mentors
 
-- [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D35AQEVX8pAR1F7ig/profile-framedphoto-shrink_400_400/0/1676961470624?e=1678039200&v=beta&t=2zQR3KfdE8fbpoEXWdjrksPgmgLj2dVbfDx559xO2fM)](https://www.linkedin.com/in/esupport/)
+- [![Andrey Rogovsky](https://media.licdn.com/dms/image/C4E03AQFxMvv_iAMhcA/profile-displayphoto-shrink_400_400/0/1517739426463?e=1688601600&v=beta&t=Qlz-aUD-V1T4So0DkeD2f4LqzfGNJs1-Vg2C9Pf6i4o)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
 https://www.linkedin.com/in/mykola-kolot-763aa5267/
