@@ -26,7 +26,7 @@ resource "local_file" "kubeconfig" {
 }
 # Create MySql Server 
 resource "azurerm_mysql_server" "aks-bd" {
-  name                = "mysql-wpmax"
+  name                = "mysql-wpmaximus"
   location            = azurerm_resource_group.aks-rg.location
   resource_group_name = azurerm_resource_group.aks-rg.name
 
@@ -52,43 +52,3 @@ resource "azurerm_mysql_firewall_rule" "aks-bd_sprout" {
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "255.255.255.255"
 }
-  # Create public ip
-  resource "azurerm_public_ip" "aks-pip" {
-    name                = "PublicIPForLB"
-    location            = azurerm_resource_group.aks-rg.location
-    resource_group_name = azurerm_resource_group.aks-rg.name
-    allocation_method   = "Static"
-  }
-
-  # Create load balancer
-  resource "azurerm_lb" "aks-lb" {
-    name                = "LoadBalancer"
-    location            = azurerm_resource_group.aks-rg.location
-    resource_group_name = azurerm_resource_group.aks-rg.name
-    frontend_ip_configuration {
-      name                 = "LoadBalancer_lb_public_ip"
-      public_ip_address_id = azurerm_public_ip.aks-pip.id
-  }
-  }
-  # Create DNS record
-  resource "azurerm_dns_zone" "aks-dns-zone" {
-    name                = "wp-team.pp.ua"
-    resource_group_name = azurerm_resource_group.aks-rg.name
-  }
-
-resource "azurerm_dns_cname_record" "aks-dns-zone" {
-  name                = "wordpress"
-  zone_name           = azurerm_dns_zone.aks-dns-zone.name
-  resource_group_name = azurerm_resource_group.aks-rg.name
-  ttl                 = 300
-  record              = "wp-team.pp.ua"
-}
-resource "azurerm_dns_a_record" "a_record" {
-  name                = azurerm_dns_zone.aks-dns-zone.name
-  zone_name           = azurerm_dns_zone.aks-dns-zone.name
-  resource_group_name = azurerm_resource_group.aks-rg.name
-  ttl                 = 300
-  target_resource_id  = azurerm_public_ip.aks-pip.id
-}
-
-

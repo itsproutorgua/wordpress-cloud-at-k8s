@@ -4,7 +4,8 @@ on:
     paths:
       - '.github/workflows/mysql.yml'
     branches:
-      - main  
+      # - main
+      - fix 
   workflow_dispatch:
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
