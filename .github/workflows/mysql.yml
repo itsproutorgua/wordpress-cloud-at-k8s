@@ -4,7 +4,7 @@ on:
     paths:
       - '.github/workflows/mysql.yml'
     branches:
-      # - main
+      - main
       - fix 
   workflow_dispatch:
 env:
