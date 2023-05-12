@@ -1,5 +1,5 @@
 variable "def_name" {
-  default = "itsprout"
+  default = "mondyspout"
 }
 
 variable "project_id" {}
@@ -13,11 +13,11 @@ variable "zone_prj" {
 }
 
 variable "sa_name" {
-  default = "sa-tf"
+  default = "sa-tfstate"
 }
 
 variable "sa_account" {
-  default = "sprout-gcp@enhanced-victor-379417.iam.gserviceaccount.com"
+  default = "git-490@tidy-vent-384809.iam.gserviceaccount.com"
 }
 
 variable "local_ip_range" {

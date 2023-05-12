@@ -31,9 +31,8 @@ resource "google_compute_network" "vpc_network" {
   name                    = "${var.def_name}-network"
   auto_create_subnetworks = false
 }
-
 resource "google_container_cluster" "k8s_cluster" {
-  name               = "${var.def_name}-k8s-cluster"
+  name               = "${var.def_name}-clusterk8s"
   location           = var.region_prj
   initial_node_count = 1
 
@@ -75,7 +74,6 @@ resource "google_container_cluster" "k8s_cluster" {
     google_compute_subnetwork.vpc_subnetwork
   ]
 }
-
 output "cluster_endpoint" {
   value = google_container_cluster.k8s_cluster.endpoint
 }
