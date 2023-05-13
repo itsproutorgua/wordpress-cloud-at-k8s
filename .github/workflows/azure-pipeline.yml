@@ -1,9 +1,9 @@
 name: WP_team_pipeline
 on:
   push:
-    paths:
-      - 'terraform-azure/**'
-      - '.github/workflows/azure-pipeline.yml'
+    # paths:
+    #   - 'terraform-azure/**'
+    #   - '.github/workflows/azure-pipeline.yml'
     branches:
       - main
       - tekton_week2  
