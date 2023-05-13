@@ -1,24 +1,3 @@
-resource "google_service_account" "service_account" {
-  account_id   = "${var.def_name}-${var.sa_name}"
-  display_name = "${var.def_name}-${var.sa_name}"
-  disabled     = false
-  project      = var.project_id
-}
-
-resource "google_project_iam_binding" "bind_roles" {
-  project = var.project_id
-  for_each = toset("${var.roles_list}")
-  role     = each.key
-
-  members = [
-    "serviceAccount:${google_service_account.service_account.email}"
-  ]
-
-  depends_on = [
-    google_service_account.service_account
-  ]
-}
-
 resource "google_compute_subnetwork" "vpc_subnetwork" {
   name                     = "${var.def_name}-subnetwork-${var.zone_prj}"
   ip_cidr_range            = var.local_ip_range
@@ -73,12 +52,4 @@ resource "google_container_cluster" "k8s_cluster" {
     google_compute_network.vpc_network,
     google_compute_subnetwork.vpc_subnetwork
   ]
-}
-output "cluster_endpoint" {
-  value = google_container_cluster.k8s_cluster.endpoint
-}
-
-output "cluster_credentials" {
-  value     = google_container_cluster.k8s_cluster.master_auth
-  sensitive = true
 }

@@ -27,8 +27,3 @@ variable "local_ip_range" {
 variable "gke_ip_range" {
   default = "10.200.0.0/19"
 }
-
-variable "roles_list" {
-  type    = list(string)
-  default = ["roles/viewer", "roles/container.admin", "roles/logging.logWriter", "roles/iam.serviceAccountAdmin", "roles/storage.admin", "roles/storage.objectAdmin"]
-}
