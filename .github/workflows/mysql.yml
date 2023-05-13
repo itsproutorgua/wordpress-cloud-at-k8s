@@ -101,7 +101,6 @@ jobs:
       run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
 
 
-
     - name: Apply Kubernetes manifest after Delete
       run: kubectl apply -f mysql.yml
 
