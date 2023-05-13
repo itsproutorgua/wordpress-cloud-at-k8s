@@ -3,5 +3,6 @@ terraform {
     bucket = "mondybucketgcp"
     prefix = "terraform/state"
     credentials = "credentials_file.json"
+    lock = false
   }
 }
