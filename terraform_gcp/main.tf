@@ -48,8 +48,12 @@ resource "google_container_cluster" "k8s_cluster" {
     }
   }
 
+  
   depends_on = [
     google_compute_network.vpc_network,
     google_compute_subnetwork.vpc_subnetwork
   ]
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 2b7fb6d9291f66bea3ddfd8ac65151ac8549b8dd
