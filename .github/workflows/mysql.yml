@@ -1,4 +1,4 @@
-name: Mysql_Pipeline
+name: DDD_Azure_Mysql
 on:
   push:
     paths:
