@@ -1,0 +1,121 @@
+name: "Deploy K8s in AWS"
+
+on:
+  push:
+    paths:
+    - 'terraform_aws/**'
+    - '.github/workflows/TerraformAWS.yml'
+    branches:
+    - main
+  workflow_dispatch:
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+jobs:
+  terraform-CI:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform_aws
+
+    steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+
+     - name: Setup Terraform
+       uses: hashicorp/setup-terraform@v1
+       with:
+          terraform_version: latest
+          terraform_wrapper: false
+     
+     - name: Create bucket if dosn't exists
+       env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
+       run: bash  $SCRIPT_DIR/create-s3.sh
+
+     - name: Terraform Init
+       id: init
+       run: terraform init
+
+     - name: Terraform Plan
+       id: plan
+       run: terraform plan -lock=false -no-color
+
+     - name: Terraform Apply
+       if: "!contains(github.event.head_commit.message, 'destroy')"
+       run: terraform apply -auto-approve -lock=false
+
+     - name: Terraform Destroy
+       if: contains(github.event.head_commit.message, 'destroy')
+       run: terraform destroy -auto-approve -lock=false
+
+  terraform-CD:
+      needs: 
+        - terraform-CI
+      if: "!contains(github.event.head_commit.message, 'destroy') "
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: terraform_aws
+
+      steps:
+      - name: Clon Rep
+        uses: actions/checkout@v3
+
+      - name: Install and configure kubectl
+        run: |
+          VERSION=$(curl --silent https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+          curl https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl \
+            --progress-bar \
+            --location \
+            --remote-name
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+  
+      - name: Get Kubeconfig
+        run: aws eks update-kubeconfig --region us-east-1 --name mondyk8awsklas
+
+      - name: Check Services/Pods/Deployment Before Deploy
+        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
+
+      - name: Apply Kubernetes manifest
+        run: kubectl apply -f mysql.yml
+
+      - name: Wait for 80 seconds()
+        run: sleep 80s
+
+      - name: Check Mysql Pods
+        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
+
+      - name: Create DB/Tables
+        env:
+          SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
+        run: bash  $SCRIPT_DIR/mysql.sh
+
+      - name: Wait for 20 seconds()
+        run: sleep 20s
+
+      - name: Delete Mysql
+        run: kubectl delete service mysql && kubectl delete pods --selector app=mysql && kubectl delete deployment mysql
+
+      - name: Wait for 10 seconds()
+        run: sleep 10s
+
+      - name: Check Services/Pods/Deployments after Delete
+        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
+
+      - name: Apply Kubernetes manifest after Delete
+        run: kubectl apply -f mysql.yml
+
+      - name: Wait for 80 seconds()
+        run: sleep 80s
+
+      - name: Check Services/Pods/Deployments after repeated Deploy
+        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
+
+      - name: Check Mysql Pods after repeated Deploy
+        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
