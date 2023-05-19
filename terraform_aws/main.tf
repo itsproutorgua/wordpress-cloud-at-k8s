@@ -1,91 +1,61 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 provider "aws" {
-  region = var.region
-}
-
-terraform {
-  backend "s3" {
-    bucket = "terraform-tfstate-itsp"
-    key    = "eks/terraform.tfstate"
-    region = "us-east-1"
-  }
+  region = "us-east-1"
 }
 
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "itsprout-eks-${random_string.suffix.result}"
-}
-
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
+  cluster_name = "mondyk8awsklas"
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.19.0"
+  version = "3.18.1"
 
-  name = "itsprout-eks-vpc"
-
-  cidr = "10.0.0.0/16"
-  azs  = slice(data.aws_availability_zones.available.names, 0, 3)
-
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
-
+  name                 = "k8s-vpc"
+  cidr                 = "172.16.0.0/16"
+  azs                  = data.aws_availability_zones.available.names
+  private_subnets      = ["172.16.1.0/24", "172.16.2.0/24", "172.16.3.0/24"]
+  public_subnets       = ["172.16.4.0/24", "172.16.5.0/24", "172.16.6.0/24"]
   enable_nat_gateway   = true
   single_nat_gateway   = true
   enable_dns_hostnames = true
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
+    "kubernetes.io/role/elb"                      = "1"
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
+    "kubernetes.io/role/internal-elb"             = "1"
   }
 }
 
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
+  source = "terraform-aws-modules/eks/aws"
   version = "19.5.1"
 
-  cluster_name    = local.cluster_name
-  cluster_version = "1.24"
+  cluster_name    = "${local.cluster_name}"
+  cluster_version = "1.26"
+  subnet_ids      = module.vpc.private_subnets
 
-  vpc_id                         = module.vpc.vpc_id
-  subnet_ids                     = module.vpc.private_subnets
+  create_kms_key            = false
+  cluster_encryption_config = {}
+
+  cluster_endpoint_private_access = true
   cluster_endpoint_public_access = true
 
-  eks_managed_node_group_defaults = {
-    ami_type = "AL2_x86_64"
+  vpc_id = module.vpc.vpc_id
 
-  }
-
+  enable_irsa = true
   eks_managed_node_groups = {
-    one = {
-      name = "node-group-1"
+  main = {
+    desired_capacity = 2
+    max_capacity     = 2
+    min_capacity     = 0
 
-      instance_types = ["t2.micro"]
-
-      min_size     = 1
-      max_size     = 3
-      desired_size = 1
-    }
-
-    two = {
-      name = "node-group-2"
-
-      instance_types = ["t2.micro"]
-
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
+    instance_type = "t3.medium"
     }
   }
 }
