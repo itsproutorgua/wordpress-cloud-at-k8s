@@ -12,4 +12,4 @@ provider "google" {
   region  = var.region_prj
   zone    = var.zone_prj
   credentials = "${file("credentials_file.json")}"
-}
+} 
