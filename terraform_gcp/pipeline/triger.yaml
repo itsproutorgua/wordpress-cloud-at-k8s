@@ -1,0 +1,72 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: git-push-binding
+spec:
+  params:
+  - name: gitRepository
+    value: $(body.repository.html_url)
+  - name: commits
+    value: $(body.commits)
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: git-push-template
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: clonebuildpushrun-
+      spec:
+        serviceAccountName: pipeline
+        pipelineRef:
+          name: clonebuildpush
+        podTemplate:
+          securityContext:
+            fsGroup: 65532  
+        params:
+          - name: revision
+            value: main
+          - name: gitrepositoryurl
+            value: "https://github.com/dmonakh/Wordpress-Tekton-atK8s-inGCP"
+          - name: IMAGE
+            value: "docker.io/dmonakh/init_db_wp"
+          - name: TAG
+            value: v1
+        workspaces:
+          - name: workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 2Gi   
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: git-push-listener
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: git-push-trigger
+      interceptors:
+        - ref:
+            name: "github"
+            kind: ClusterInterceptor
+            apiVersion: triggers.tekton.dev
+          params:
+          - name: "pipeline"
+            value:
+              secretName: regsecret
+          - name: "eventTypes"
+            value: ["push"]
+          - name: "branches"
+            value: ["main"]
+      bindings:
+        - ref: git-push-binding
+      template:
+        ref : git-push-template
