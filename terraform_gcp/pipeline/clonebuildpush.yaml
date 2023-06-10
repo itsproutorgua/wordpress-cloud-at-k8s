@@ -1,0 +1,54 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: clonebuildpush
+spec:
+  params:
+    - name: revision
+    - name: gitrepositoryurl
+    - name: IMAGE
+    - name: TAG
+    - name: DOCKERFILE
+      description: Path to the Dockerfile to build.
+      default: ./terraform_gcp/Dockerfile
+  workspaces:
+    - name: workspace
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: workspace
+      params:
+        - name: revision
+          value: $(params.revision)
+        - name: url
+          value: $(params.gitrepositoryurl)
+        - name: deleteExisting
+          value: "true"
+    - name: build-push-image
+      taskRef:
+        name: buildah
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: workspace
+      params:
+        - name: IMAGE
+          value: "$(params.IMAGE):$(params.TAG)"
+        - name: FORMAT
+          value: "docker"
+        - name: CONTEXT
+          value: "$(workspaces.source.path)/terraform_gcp" 
+    - name: kubectl-run
+      taskRef:
+        name: kubernetes-actions
+      runAfter:
+        - build-push-image
+      params:
+        - name: script  
+          value: |
+            kubectl apply -f https://raw.githubusercontent.com/dmonakh/Wordpress-Tekton-atK8s-inGCP/main/terraform_gcp/Deploy.yml
+            

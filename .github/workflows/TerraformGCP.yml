@@ -15,6 +15,8 @@ env:
   SA_NAME: git-490@tidy-vent-384809.iam.gserviceaccount.com 
   CLUSTER_NAME: mondyspout-clusterk8s
   REGION: us-central1
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  REPO: dmonakh/Wordpress-Tekton-atK8s-inGCP
 
 jobs:
   terraform-CI:
@@ -91,11 +93,41 @@ jobs:
     - name: Get kubeconfig 
       run: gcloud container clusters get-credentials $CLUSTER_NAME --region=$REGION --project=${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Apply Kubernetes manifest
-      run: kubectl apply -f Deploy.yml
+    - name: Install Tekton
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        DOCKER_USERNAME : ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD : ${{ secrets.DOCKER_PASSWORD }}
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_gcp/scripts
+      run: bash  $SCRIPT_DIR/install-tekton.sh
 
-    - name: Wait for 120 seconds()
-      run: sleep 120s
+    - name: Wait for 60 seconds()
+      if: contains(github.event.head_commit.message, 'init')
+      run: sleep 60s
+
+    - name: Create Webhook
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_gcp/scripts
+      run: |
+        external_ip=$(kubectl get svc ingress-nginx-controller -n ingress-nginx  -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        echo "External IP: $external_ip"
+        bash $SCRIPT_DIR/add-webhook.sh $external_ip
+    
+    - name: Create empty commit
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git pull
+        git commit --allow-empty -m "Empty commit"
+        git push
+
+    - name: Wait for 4 minutes
+      run: sleep 240s
 
     - name: Check Service
       run: kubectl get service 
+
