@@ -13,6 +13,7 @@ echo "3 ----- >Install Tekton Dashboard"
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml
 
 # Install tasks from Tekton Hub
+sleep 30
 echo "4 ----- >Install tasks from Tekton Hub"
 tkn hub install task git-clone && tkn hub install task buildah && tkn hub install task kubernetes-actions 
 
