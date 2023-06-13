@@ -47,8 +47,9 @@ spec:
         name: kubernetes-actions
       runAfter:
         - build-push-image
-      params:
+      params: # Replace with you repo raw.
         - name: script  
           value: |
-            kubectl apply -f https://raw.githubusercontent.com/dmonakh/Wordpress-Tekton-atK8s-inGCP/main/terraform_gcp/Deploy.yml
+            kubectl apply -f https://raw.githubusercontent.com/dmonakh/Wordpress-Tekton-atK8s-inGCP/main/terraform_gcp/Deploy.yml 
+
             

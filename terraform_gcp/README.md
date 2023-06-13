@@ -72,6 +72,7 @@ To implement this project, you will need the following components and accounts:
 
 - GCP account with a configured project and access to the necessary resources.
 - GCP service account with IAM administrator privileges and a JSON key for authentication.
+- Enable [Kubernetes Engine API](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiJrP-jub7_AhUrlIsKHSntAOgQFnoECAcQAQ&url=https%3A%2F%2Fconsole.cloud.google.com%2Fapis%2Flibrary%2Fcontainer.googleapis.com&usg=AOvVaw2_PswnAyHk8xciaOOUM15Q)
 - Docker Hub account (or another container registry) to store container images.
 - GitHub account for code storage and automation configuration.
 - Domain registered with a domain registrar (e.g., Cloudflare) for DNS configuration.
@@ -87,6 +88,7 @@ First, you need to configure the secret in repo:
 - `GH_TOKEN`: Your token with permission on webhook or repo management. 
 - `DOCKER_USERNAME`: Your username in Docker Hub.
 - `DOCKER_PASSWORD`: Your password in Docker Hub.
+
 Make sure the specified parameters align with your environment and requirements.
 ### Installation
 
@@ -112,30 +114,28 @@ To deploy WordPress with Tekton, follow these steps:
 
 6. Update the `terraform_gcp/pipeline/triger.yaml` with your repo url and docker image for Tekton, or `terraform_gcp/pipeline/clonebuildpush.yaml` with your repo raw.
 
-7. Update the `terraform_gcp/scripts/add-webhooks.sh` with your repo.
-
-8. To create a Wordpress initialization image:
+7. To create a Wordpress initialization image:
 
   - Update the `terraform_gcp/scripts/setup-db-wp.sh` with your desired wordpress site data, in the url box, specify your domain, in the dbpass, specify root password and keep him. (If you need any necessary themes or     plugins, specify them in this script.)
   - Update the `terraform_gcp/Dockerfile` in the ENV PASSWORD box, specify the root password you used on the last step. 
 
-9. Update the `terraform_gcp/Deploy.yml`, be sure to use a password like in last step, сhange the name for your image.
+8. Update the `terraform_gcp/Deploy.yml`, be sure to use a password like in last step, сhange the name for your image.
 
-10. Enable GitHub Actions in your repository by creating a `.github/workflows` directory and copying the `TerraformGCP.yml` file from this repository:
+9. Enable GitHub Actions in your repository by creating a `.github/workflows` directory and copying the `TerraformGCP.yml` file from this repository:
 
     ```
     mkdir -p .github/workflows
     cp Wordpress-Tekton-atK8s-inGCP/.github/workflows/TerraformGCP.yml .github/workflows/TerraformGCP.yml
     ```
-11. Update the `.github/workflows/TerraformGCP.yml` with your env.
+10. Update the `.github/workflows/TerraformGCP.yml` with your env.
 
-12. Enable `Read and write permission` in General setting Action in Repo
+11. Enable `Read and write permission` in General setting Action in Repo
 
-13. Commit `init` and push all the changes to the repository.
+12. Commit `init` and push all the changes to the repository.
 
-14. GitHub Actions will automatically trigger the pipeline to deploy the infrastructure in GCP.
+13. GitHub Actions will automatically trigger the pipeline to deploy the infrastructure in GCP.
 
-15. Wait for the pipeline to complete successfully to ensure the infrastructure is created successfully.
+14. Wait for the pipeline to complete successfully to ensure the infrastructure is created successfully.
 
 ## Usage
 

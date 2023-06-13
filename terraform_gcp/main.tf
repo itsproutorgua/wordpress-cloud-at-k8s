@@ -53,3 +53,8 @@ resource "google_container_cluster" "k8s_cluster" {
     google_compute_subnetwork.vpc_subnetwork
   ]
 }
+provider "dns" {
+  update {
+    key_name = var.domain
+  }
+}

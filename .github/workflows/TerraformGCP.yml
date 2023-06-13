@@ -11,12 +11,12 @@ on:
 
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  BUCKET_NAME: mondybucketgcp
-  SA_NAME: git-490@tidy-vent-384809.iam.gserviceaccount.com 
-  CLUSTER_NAME: mondyspout-clusterk8s
-  REGION: us-central1
+  BUCKET_NAME: mondybucketgcp # Replace with you bucket name.
+  SA_NAME: git-490@tidy-vent-384809.iam.gserviceaccount.com  # Replace with you service account.
+  CLUSTER_NAME: mondyspout-clusterk8s # Replace with you cluster name (you_cluster_name-clusterk8s).
+  REGION: us-central1 # Replace with you region.
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  REPO: dmonakh/Wordpress-Tekton-atK8s-inGCP
+  REPO: dmonakh/Wordpress-Tekton-atK8s-inGCP # Replace with you repo (user/repo).
 
 jobs:
   terraform-CI:
@@ -101,7 +101,7 @@ jobs:
         SCRIPT_DIR: ${{ github.workspace }}/terraform_gcp/scripts
       run: bash  $SCRIPT_DIR/install-tekton.sh
 
-    - name: Wait for 60 seconds()
+    - name: Wait for 60 seconds
       if: contains(github.event.head_commit.message, 'init')
       run: sleep 60s
 
@@ -125,9 +125,8 @@ jobs:
         git commit --allow-empty -m "Empty commit"
         git push
 
-    - name: Wait for 4 minutes
-      run: sleep 240s
+    - name: Wait for 5 minutes
+      run: sleep 300s
 
     - name: Check Service
       run: kubectl get service 
-
