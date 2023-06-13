@@ -16,7 +16,7 @@ env:
   CLUSTER_NAME: mondyspout-clusterk8s # Replace with you cluster name (you_cluster_name-clusterk8s).
   REGION: us-central1 # Replace with you region.
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  REPO: dmonakh/Wordpress-Tekton-atK8s-inGCP # Replace with you repo (user/repo).
+  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with you repo (user/repo).
 
 jobs:
   terraform-CI:
