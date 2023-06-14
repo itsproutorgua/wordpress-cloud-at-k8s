@@ -34,8 +34,6 @@
 - [About](#about)
   - [Built With](#built-with)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Support](#support)
@@ -61,141 +59,51 @@ We welcome contributors to join the project and help improve the infrastructure 
 
 Thank you for your interest in WordPress Cloud at K8S!
 
-
-
-
 ### Built With
 
-* Terraform
-* Ansible
-* Kubernetes
-* Tekton
-* MySQL
-* WordPress
-* Docker
-* GitHub Actions
-* AWS/GCP/Azure
+The project is built using the following technologies:
+
+- [Tekton](https://tekton.dev/): A Kubernetes-native open-source framework for creating continuous integration and delivery (CI/CD) systems.
+- [Kubernetes](https://kubernetes.io/): An open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications.
+- [Amazon Web Services (AWS)](https://aws.amazon.com/): A suite of cloud computing services provided by Google, including compute, storage, networking, and more
+- [Microsoft Azure](https://azure.microsoft.com/): A suite of cloud computing services provided by Google, including compute, storage, networking, and more.
+- [Google Cloud Platform (GCP)](https://cloud.google.com/): A suite of cloud computing services provided by Google, including compute, storage, networking, and more.
+- [WordPress](https://wordpress.org/): A popular open-source content management system (CMS) for creating websites and blogs.
+- [Terraform](https://www.terraform.io/): An open-source infrastructure as code software tool that enables you to define and provision infrastructure resources using declarative configuration files.
+- [Docker](https://www.docker.com/): An open-source platform that allows you to automate the deployment, scaling, and management of applications using containerization.
+
+These technologies work together to provide a robust and scalable solution for deploying and managing WordPress instances in the cloud. Tekton is used for creating CI/CD pipelines, Kubernetes handles the container orchestration, cloud provides the underlying cloud infrastructure, WordPress powers the content management, and Terraform and Docker are used for infrastructure provisioning and containerization, respectively.
 
 ## Getting Started
 
-To get started with WordPress Cloud at K8S, follow these steps:
+Please decide on which provider you need to run the project.
 
-1. Clone this repository:
+If you chose AWS, see the documentation [here](docs/ReadmeAWS.md).
 
-    ```
-    git clone https://github.com/<your-username>/wordpress-cloud-at-k8s.git
-    ```
+If you chose Azure, see the documentation [here](docs/ReadmeAzure.md). 
 
-2. Choose your cloud provider (AWS, GCP, or Azure) by selecting the appropriate flag in the `setup_cloud_infra.sh` script. 
-
-3. Run the `setup_cloud_infra.sh` script to deploy your Kubernetes cluster:
-
-    ```
-    sh setup_cloud_infra.sh
-    ```
-
-4. After the Kubernetes cluster is deployed, run the `setup_tekton.sh` script to deploy Tekton and configure it on the same repository:
-
-    ```
-    sh setup_tekton.sh
-    ```
-
-5. Next, run the `setup_mysql.sh` script to deploy MySQL on your Kubernetes cluster:
-
-    ```
-    sh setup_mysql.sh
-    ```
-
-6. Once MySQL is deployed, navigate to the `wordpress-definitions` directory and create your WordPress definition by modifying the `configset.yaml` file and committing your changes to the repository.
-
-7. Finally, run the `deploy_wordpress.sh` script to build and deploy your WordPress instance:
-
-    ```
-    sh deploy_wordpress.sh
-    ```
-
-For detailed instructions on each step, please see our [Wiki page](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/wiki).
-
-
-### Prerequisites
-
-Before you can use WordPress Cloud at K8S, you must have the following:
-
-* A valid account with one of the following cloud providers: AWS, GCP, or Azure
-* Terraform (v1.0.0 or higher) installed on your local machine
-* Ansible (v2.9 or higher) installed on your local machine
-* kubectl (v1.18.0 or higher) installed on your local machine
-* Docker (v20.10.0 or higher) installed on your local machine
-
-
-### Installation
-
-To install WordPress Cloud at K8S, follow these steps:
-
-1. Clone this repository:
-
-    ```
-    git clone https://github.com/itsproutorguaua/wordpress-cloud-at-k8s.git
-    ```
-
-2. Create a new repository on your GitHub account.
-
-3. Set up a remote repository for your local repository:
-
-    ```
-    git remote set-url origin https://github.com/<your-username>/<your-repo-name>.git
-    ```
-
-4. Update the `setup_cloud_infra.sh` script with your desired configuration parameters, such as cluster name, region, and instance type.
-
-5. Create the following secrets in your GitHub repository to securely store your cloud provider credentials and other sensitive information:
-
-    * `AWS_ACCESS_KEY_ID` - Your AWS access key ID
-    * `AWS_SECRET_ACCESS_KEY` - Your AWS secret access key
-    * `GCP_PROJECT_ID` - Your GCP project ID
-    * `GCP_CREDENTIALS` - Your GCP service account credentials in JSON format
-    * `AZURE_SUBSCRIPTION_ID` - Your Azure subscription ID
-    * `AZURE_TENANT_ID` - Your Azure tenant ID
-    * `AZURE_CLIENT_ID` - Your Azure client ID
-    * `AZURE_CLIENT_SECRET` - Your Azure client secret
-
-6. Enable GitHub Actions in your repository by creating a `.github/workflows` directory and copying the `deploy.yml` file from this repository:
-
-    ```
-    mkdir -p .github/workflows
-    cp wordpress-cloud-at-k8s/.github/workflows/deploy.yml .github/workflows/deploy.yml
-    ```
-
-7. Commit and push your changes to your remote repository.
-
-8. After GitHub Actions completes, you can access your WordPress site by visiting the external IP address of your Kubernetes cluster.
-
-For more detailed instructions on how to configure GitHub Secrets and deploy your infrastructure, see our [Wiki page](https://github.com/itsproutorguaua/wordpress-cloud-at-k8s/wiki).
-
+If you chose GCP, see the documentation [here](docs/ReadmeGCP.md).
 
 ## Usage
 
-To deploy a new WordPress instance, follow these steps:
+After deploying the infrastructure using Terraform and GitHub Actions, you wait and check GitHub Action.
 
-1. Create a new subset for WP-CLI in the `wordpress/` directory with the necessary configurations for your WordPress instance. For example:
-    ```
-    wordpress/subset-1/configset.yml
-    site_url: https://example.com
-    site_title: My Example Site
-    admin_user: admin
-    admin_email: example@example.com
-    ```
+After step `Create empty commit` the tekton pipeline will automatically create and configure the necessary resources for deploying WordPress in your AWS project. 
+You can track the progress of the pipeline execution through the Tekton dashboard or the command line.  
 
-2. Commit the new subset to your local git repository:
-    ```
-    $ git add wordpress/subset-1/configset.yml
-    $ git commit -m "Add new subset for example.com"
-    $ git push origin main
-    ```
+### Optional:
 
-3. The Tekton pipeline will automatically trigger and deploy the new WordPress instance using the configurations specified in the subset.
+Run: ``` kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097 ```
 
-4. Once the pipeline has completed, your new WordPress instance will be available at the specified `site_url` with the owner email `example@example.com` and the site title `My Example Site`.
+Open: [Tekton Dashboard](http://127.0.0.1:9097/#/namespaces/default/pipelineruns) for reviewing the pipeline run.
+
+### Сonclusion: 
+
+If step `Check Service` in GitHub Action shows an external IP for WordPress and the link works, well done! 
+(Note: You can open this ip in your browser and get your site. But the display of the site will not be correct until you connect the domain)
+
+After that, you need to create an A record in your registered Domain and wait about for 72 hours to check if the site works for your Domain.  
+(You can use [This Service](https://mxtoolbox.com/SuperTool.aspxto) track the update of your domain’s DNS records)
 
 ## Roadmap
 
