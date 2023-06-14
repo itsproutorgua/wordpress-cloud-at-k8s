@@ -75,5 +75,7 @@ To deploy WordPress with Tekton, follow these steps:
 12. GitHub Actions will automatically trigger the pipeline to deploy the infrastructure in GCP.
 
 13. Wait for the pipeline to complete successfully to ensure the infrastructure is created successfully.
+ 
+---
 
-### After successfully completing these steps, revert to the main [Documentation](/README.md) in step Usage
+### After successfully completing these steps, revert to the main [Documentation](/README.md) in step Usage.
