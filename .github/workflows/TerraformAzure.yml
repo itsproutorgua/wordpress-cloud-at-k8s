@@ -1,0 +1,116 @@
+name: Terraform deploy kubernetes cluster and Tekton in Azure
+on:
+  push:
+    paths:
+      - 'terraform_azure/**'
+      - '.github/workflows/TerraformAzure.yml'
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  KUBECONFIG: ${{ github.workspace }}/terraform_azure/kubeconfig
+  GH_TOKEN: ${{ secrets.GH_TOKEN }} 
+  REPO: dmonakh/Wordpress-Tekton-atK8s-inAzure  # Replace with you repo (user/repo).
+
+jobs:
+  terraform-CI:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform_azure
+      
+    steps:
+    - name: Clon Rep
+      uses: actions/checkout@v3  
+
+    - name: Create Storage
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_azure/scripts
+      run: bash  $SCRIPT_DIR/create_storage.sh
+
+    - name: terraform init
+      run: terraform init
+
+    - name: terraform plan
+      id: plan
+      run: terraform plan
+      
+    - name: terraform apply
+      if: "!contains(github.event.head_commit.message, 'destroy')"
+      run: terraform apply -auto-approve
+
+    - name: Upload kubeconfig artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: kubeconfig
+        path: terraform_azure/kubeconfig 
+      
+    - name: Terraform Destroy
+      if: contains(github.event.head_commit.message, 'destroy')
+      run: terraform destroy -auto-approve
+
+  terraform-CD:
+    needs: 
+      - terraform-CI
+    if: "!contains(github.event.head_commit.message, 'destroy') "
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform_azure
+
+    steps:
+    - name: Clon Rep
+      uses: actions/checkout@v3
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Download kubeconfig
+      uses: actions/download-artifact@v3
+      with:
+        name: kubeconfig
+        path: terraform_azure
+
+    - name: Install Tekton
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        DOCKER_USERNAME : ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD : ${{ secrets.DOCKER_PASSWORD }}
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_azure/scripts
+      run: bash  $SCRIPT_DIR/install-tekton.sh
+
+    - name: Wait for 60 seconds
+      if: contains(github.event.head_commit.message, 'init')
+      run: sleep 60s
+
+    - name: Create Webhook
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_azure/scripts
+      run: |
+        external_ip=$(kubectl get svc ingress-nginx-controller -n ingress-nginx  -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        echo "External IP: $external_ip"
+        bash $SCRIPT_DIR/add-webhook.sh $external_ip
+    
+    - name: Create empty commit
+      if: contains(github.event.head_commit.message, 'init')
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git pull
+        git commit --allow-empty -m "Empty commit"
+        git push
+
+    - name: Wait for 5 minutes
+      run: sleep 300s
+
+    - name: Check Service
+      run: kubectl get service
+

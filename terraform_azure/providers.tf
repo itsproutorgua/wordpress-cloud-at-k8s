@@ -3,7 +3,6 @@ provider "azurerm" {
   
 }
 terraform {
-  
 
   required_providers {
     azurerm = {
@@ -16,7 +15,7 @@ terraform {
   }
     backend "azurerm" {
     resource_group_name  = "tfstate"
-    storage_account_name = "tfstateitsproutnew"
+    storage_account_name = "tfstatemondy123"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
     }
