@@ -15,7 +15,7 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   KUBECONFIG: ${{ github.workspace }}/terraform_azure/kubeconfig
   GH_TOKEN: ${{ secrets.GH_TOKEN }} 
-  REPO: dmonakh/Wordpress-Tekton-atK8s-inAzure  # Replace with you repo (user/repo).
+  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with you repo (user/repo).
 
 jobs:
   terraform-CI:
