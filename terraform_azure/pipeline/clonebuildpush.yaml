@@ -10,7 +10,7 @@ spec:
     - name: TAG
     - name: DOCKERFILE
       description: Path to the Dockerfile to build.
-      default: ./terraform-azure/Dockerfile
+      default: ./terraform_azure/Dockerfile
   workspaces:
     - name: workspace
   tasks:
@@ -41,14 +41,15 @@ spec:
         - name: FORMAT
           value: "docker"
         - name: CONTEXT
-          value: "$(workspaces.source.path)/terraform-azure" 
+          value: "$(workspaces.source.path)/terraform_azure" 
     - name: kubectl-run
       taskRef:
         name: kubernetes-actions
       runAfter:
         - build-push-image
-      params:
+      params: # Replace with you repo raw.
         - name: script  
           value: |
-            kubectl apply -f https://raw.githubusercontent.com/blinovmaksym/terraform_deploy_kuber/main/terraform-azure/init_db.yml
+            kubectl apply -f https://raw.githubusercontent.com/dmonakh/Wordpress-Tekton-atK8s-inAzure/main/terraform_azure/Deploy.yml 
+
             

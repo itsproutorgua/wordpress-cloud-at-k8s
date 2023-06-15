@@ -30,9 +30,9 @@ spec:
           - name: revision
             value: main
           - name: gitrepositoryurl
-            value: "https://github.com/blinovmaksym/terraform_deploy_kuber"
+            value: "https://github.com/dmonakh/Wordpress-Tekton-atK8s-inAzure" # Replace with you repo link.
           - name: IMAGE
-            value: "docker.io/maksymblinov/init_db"
+            value: "docker.io/dmonakh/init_db_wp" # Replace with you docker account name (docker.io/user/image_name).
           - name: TAG
             value: v1
         workspaces:
@@ -43,7 +43,7 @@ spec:
                   - ReadWriteOnce
                 resources:
                   requests:
-                    storage: 10Gi   
+                    storage: 2Gi   
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
@@ -61,8 +61,7 @@ spec:
           params:
           - name: "pipeline"
             value:
-              secretName: github-trigger-secret
-              secretKey: secretToken
+              secretName: regsecret
           - name: "eventTypes"
             value: ["push"]
           - name: "branches"
@@ -71,4 +70,3 @@ spec:
         - ref: git-push-binding
       template:
         ref : git-push-template
-

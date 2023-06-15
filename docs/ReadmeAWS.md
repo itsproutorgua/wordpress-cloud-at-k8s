@@ -49,7 +49,7 @@ To deploy WordPress with Tekton, follow these steps:
     git remote set-url origin https://github.com/<your-username>/<your-repo-name>.git
     ```
 
-4. Update the `terraform_aws/main.tf`, `terraform_aws/backend.tf` and `terraform_aws/scripts/create-s3.sh` with your desired configuration parameters, such as cluster name, region, your doamin and bucket for infrastructure.
+4. Update the `terraform_aws/main.tf`, `terraform_aws/backend.tf` and `terraform_aws/scripts/create-s3.sh` with your desired configuration parameters, such as cluster name, region, your domain and bucket for infrastructure.
 
 5. Create and configure the secrets required for accessing the database and other resources.
 
