@@ -26,7 +26,7 @@ First, you need to configure the secret in repo:
 
 - `GCP_PROJECT_ID`: Your GCP project ID.
 - `GCP_CREDENTIALS` : Your JSON key for authentication a coded with base64.
-- `GH_TOKEN`: Your token with permission on webhook or repo management. ([To create a token, use](https://github.com/settings/tokens))
+- `GH_TOKEN`: Your token with permission by webhook or repo management. ([To create a token, use](https://github.com/settings/tokens))
 - `DOCKER_USERNAME`: Your username in Docker Hub.
 - `DOCKER_PASSWORD`: Your password in Docker Hub.
 
