@@ -103,7 +103,7 @@ If step `Check Service` in GitHub Action shows an external IP for WordPress and 
 (Note: You can open this ip in your browser and get your site. But the display of the site will not be correct until you connect the domain)
 
 After that, you need to create an A record in your registered Domain and wait about for 72 hours to check if the site works for your Domain.  
-(You can use [This Service](https://mxtoolbox.com/SuperTool.aspxto) track the update of your domain’s DNS records)
+(You can use [This Service](https://mxtoolbox.com/SuperTool.aspxto) to track the update of your domain’s DNS records)
 
 ## Roadmap
 
