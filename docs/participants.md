@@ -1,15 +1,17 @@
 # Mentors
 
-- [![Andrey Rogovsky](https://media.licdn.com/dms/image/C4E03AQFxMvv_iAMhcA/profile-displayphoto-shrink_400_400/0/1517739426463?e=1688601600&v=beta&t=Qlz-aUD-V1T4So0DkeD2f4LqzfGNJs1-Vg2C9Pf6i4o)](https://www.linkedin.com/in/esupport/)
+- [![Andrey Rogovsky](https://media.licdn.com/dms/image/D4D03AQE8MhDJGxWZig/profile-displayphoto-shrink_800_800/0/1685594094317?e=1692835200&v=beta&t=n41qFarbm2zjgzLJDGy0XpPU-nB4aWTESBJ03N7ioL8)](https://www.linkedin.com/in/esupport/)
 
 ## Participants
 
-- [![Maksym Blinov](https://media.licdn.com/dms/image/C4E03AQGYbF2bsisu0Q/profile-displayphoto-shrink_800_800/0/1655127079289?e=1683158400&v=beta&t=8eaTMDLDOIe9gXRehAwVa2ctjn8jhYfcnkGs1OX5E04)](https://www.linkedin.com/in/blinovmaxim/)
+- [![Maksym Blinov](https://media.licdn.com/dms/image/D4E35AQETNv7zHvje8A/profile-framedphoto-shrink_800_800/0/1685177964028?e=1687784400&v=beta&t=wUi4WzEHSsyZ8zF458OcqkgJ7vUJjY2GakgPpBd3ijw)](https://www.linkedin.com/in/blinovmaxim/)
 
-- [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_200_200/0/1664449227723?e=1683158400&v=beta&t=ukvvRYmCJR9wpXGExTrAjv5GgOirUf4PMgI-DeMFlxI)](https://www.linkedin.com/in/mondydude/)
+- [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_800_800/0/1664449227723?e=1692835200&v=beta&t=hbblTC2lRxD9-_qko7UuSLaeF4YPGXPNpvoTdw_Bpoc)](https://www.linkedin.com/in/mondydude/)
 
-- [![Leonid Pistryi](https://media.licdn.com/dms/image/C5603AQGoSA7jjbIPnQ/profile-displayphoto-shrink_800_800/0/1575648450741?e=1683158400&v=beta&t=w6AmYWjt-ZgVI1YDidQXaHC_B3X3CPxrkoLDqx3CqEM)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
- 
+- [![Leonid Pistryi](https://media.licdn.com/dms/image/D4D35AQG5LU48rADx5g/profile-framedphoto-shrink_200_200/0/1687006282330?e=1687784400&v=beta&t=8F7HTXjepexE9J8dSKXkl6PgHw7pGYvbWjE7WXWp69U)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
+
+- [![Igor Postavnichiy](https://media.licdn.com/dms/image/D4D03AQH1jYjkB-xbzg/profile-displayphoto-shrink_200_200/0/1678723970229?e=1692835200&v=beta&t=KE0cxzTuKbttdUJ0-uDjJbIKm4q_3IgRJj_HO9Ke2P4)](https://www.linkedin.com/in/igor-postavnichiy/)
+
 ## How to add your LinkedIn profile
 
 1. Fork this repository.
