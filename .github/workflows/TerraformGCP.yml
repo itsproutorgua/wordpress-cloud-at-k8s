@@ -61,6 +61,13 @@ jobs:
         if: "!contains(github.event.head_commit.message, 'destroy')"
         run: terraform apply -lock=false -auto-approve -var="project_id=${{ secrets.GCP_PROJECT_ID }}"
 
+      - name: Delete Webhook
+        if: contains(github.event.head_commit.message, 'destroy')
+        env:
+          SCRIPT_DIR: ${{ github.workspace }}/terraform_gcp/scripts
+        run: |
+          bash $SCRIPT_DIR/del-webhook.sh
+
       - name: Terraform Destroy
         if: contains(github.event.head_commit.message, 'destroy')
         run: terraform destroy -lock=false -auto-approve -var="project_id=${{ secrets.GCP_PROJECT_ID }}"
@@ -130,3 +137,8 @@ jobs:
 
     - name: Check Service
       run: kubectl get service 
+
+    - name: Get IP address
+      run: |
+          external_ip_wp=$(kubectl get svc wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          echo "External IP WordPress: $external_ip_wp"
