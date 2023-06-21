@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bucket_name="mondyk8sbucket1911" # Replace with you bucket name.
+bucket_name="mondyk8sbucket1911" # Replace with your bucket name.
 
 aws s3api head-bucket --bucket "$bucket_name"  2>/dev/null
 
