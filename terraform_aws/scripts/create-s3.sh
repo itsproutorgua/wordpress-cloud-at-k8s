@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bucket_name="mondyk8sbucket2023"
+bucket_name="mondyk8sbucket1911"
 
 aws s3api head-bucket --bucket "$bucket_name"  2>/dev/null
 
@@ -10,3 +10,4 @@ else
   aws s3api create-bucket --bucket "$bucket_name" 
   echo "Bucket $bucket_name created successfully."
 fi
+
