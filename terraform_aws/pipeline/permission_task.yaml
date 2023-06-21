@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: set-permissions
+spec:
+  workspaces:
+    - name: output
+  steps:
+    - name: set-permissions
+      image: alpine
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          chmod -R 777 /workspace/output
