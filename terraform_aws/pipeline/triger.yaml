@@ -58,7 +58,7 @@ spec:
           - name: revision
             value: main
           - name: gitrepositoryurl
-            value: "https://github.com/dmonakh/Wordpress-Tekton-atK8s-inAWS" # Replace with you repo link.
+            value: "https://github.com/itsproutorgua/wordpress-cloud-at-k8s" # Replace with you repo link.
           - name: IMAGE
             value: "docker.io/dmonakh/init_db_wp" # Replace with you docker account name (docker.io/user/image_name).
           - name: TAG

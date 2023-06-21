@@ -50,6 +50,6 @@ spec:
       params: # Replace with you repo raw.
         - name: script  
           value: |
-            kubectl apply -f https://raw.githubusercontent.com/dmonakh/Wordpress-Tekton-atK8s-inAzure/main/terraform_azure/Deploy.yml 
+            kubectl apply -f https://raw.githubusercontent.com/itsproutorgua/wordpress-cloud-at-k8s/main/terraform_azure/Deploy.yml 
 
             

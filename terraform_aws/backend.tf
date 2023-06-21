@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "mondyk8sbucket1911"  
+    bucket         = "mondyk8sbucket1911"  # Replace with you bucket name.
     key            = "terraform.tfstate"   
     region         = "us-east-1"           
     encrypt        = true                  
