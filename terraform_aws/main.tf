@@ -5,7 +5,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "mondyk8awsklas"
+  cluster_name = "mondyk8awsklas" # Replace a name for your cluster.
 }
 
 module "vpc" {
@@ -62,5 +62,5 @@ module "eks" {
   depends_on = [module.vpc.k8s-vpc]
 }
 resource "aws_route53_zone" "dns" {
-  name     = "it-sproutdevteam.fun"
+  name     = "it-sproutdevteam.fun" # Replace with your domain.
 }
