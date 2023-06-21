@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: workspace-pv
+  labels:
+    type: local
+spec:
+  storageClassName: fast-disks
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/workspace/output"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workspace-pvc
+spec:
+  storageClassName: fast-disks
+  volumeName: workspace-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: git-push-binding
+spec:
+  params:
+  - name: gitRepository
+    value: $(body.repository.html_url)
+  - name: commits
+    value: $(body.commits)
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: git-push-template
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: clonebuildpushrun-
+      spec:
+        serviceAccountName: pipeline
+        pipelineRef:
+          name: clonebuildpush
+        podTemplate:
+          securityContext:
+            fsGroup: 65532  
+        params:
+          - name: revision
+            value: main
+          - name: gitrepositoryurl
+            value: "https://github.com/dmonakh/Wordpress-Tekton-atK8s-inAWS" # Replace with you repo link.
+          - name: IMAGE
+            value: "docker.io/dmonakh/init_db_wp" # Replace with you docker account name (docker.io/user/image_name).
+          - name: TAG
+            value: v1
+        workspaces:
+          - name: workspace
+            persistentVolumeClaim:
+              claimName: workspace-pvc
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: git-push-listener
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: git-push-trigger
+      interceptors:
+        - ref:
+            name: "github"
+            kind: ClusterInterceptor
+            apiVersion: triggers.tekton.dev
+          params:
+          - name: "pipeline"
+            value:
+              secretName: regsecret
+          - name: "eventTypes"
+            value: ["push"]
+          - name: "branches"
+            value: ["main"]
+      bindings:
+        - ref: git-push-binding
+      template:
+        ref : git-push-template
