@@ -11,12 +11,12 @@ on:
 
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  BUCKET_NAME: mondybucketgcp # Replace with you bucket name.
-  SA_NAME: git-490@tidy-vent-384809.iam.gserviceaccount.com  # Replace with you service account.
-  CLUSTER_NAME: mondyspout-clusterk8s # Replace with you cluster name (you_cluster_name-clusterk8s).
-  REGION: us-central1 # Replace with you region.
+  BUCKET_NAME: mondybucketgcp # Replace with your bucket name.
+  SA_NAME: git-490@tidy-vent-384809.iam.gserviceaccount.com  # Replace with your service account.
+  CLUSTER_NAME: mondyspout-clusterk8s # Replace with your cluster name (your_cluster_name-clusterk8s).
+  REGION: us-central1 # Replace with your region.
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with you repo (user/repo).
+  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with your repo (user/repo).
 
 jobs:
   terraform-CI:

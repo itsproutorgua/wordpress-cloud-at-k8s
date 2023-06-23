@@ -34,7 +34,7 @@ spec:
           - name: IMAGE
             value: "docker.io/dmonakh/init_db_wp" # Replace with your docker account name (docker.io/user/image_name).
           - name: TAG 
-            value: v1 # Replace with your docker account name (docker.io/user/image_name).
+            value: v1 # Replace with your image name:tag.
         workspaces:
           - name: workspace
             volumeClaimTemplate:
