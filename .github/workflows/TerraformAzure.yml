@@ -1,4 +1,5 @@
-name: Terraform deploy kubernetes cluster and Tekton in Azure
+name: Wordpress-Tekton-atK8s-inAzure
+
 on:
   push:
     paths:

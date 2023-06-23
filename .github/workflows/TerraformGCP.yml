@@ -1,4 +1,4 @@
-name: Terraform deploy kubernetes cluster
+name: Wordpress-Tekton-atK8s-inGCP
 
 on:
   push:

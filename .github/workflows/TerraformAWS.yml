@@ -1,5 +1,4 @@
-
-name: "Deploy K8s in AWS"
+name: Wordpress-Tekton-atK8s-inAWS
 
 on:
   push:
