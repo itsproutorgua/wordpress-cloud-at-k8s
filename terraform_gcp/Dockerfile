@@ -20,7 +20,7 @@ RUN apk add --no-cache \
 RUN wget -O /usr/local/bin/wp https://github.com/wp-cli/wp-cli/releases/download/v2.7.1/wp-cli-2.7.1.phar \
     && chmod +x /usr/local/bin/wp
 # Set the server name and login credentials
-# Replace with you dbpass.
+# Replace with your dbpass.
 ENV SERVER_NAME mysql
 ENV USER_NAME root
 ENV PASSWORD wordsec

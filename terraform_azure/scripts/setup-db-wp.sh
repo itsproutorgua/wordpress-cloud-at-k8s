@@ -14,8 +14,8 @@ if [  -f /var/www/html/wp-config.php ]; then
     wp --allow-root --path=/var/www/html theme activate hestia     
 else    
     # Configure WP-CLI and install plugins and themes
-    # Replace with you dbpass, url, title, admin_user, admin_password, admin_email.
-    # If you need any necessary themes or plugins replace them.
+    # Replace with your dbpass, url, title, admin_user, admin_password, admin_email.
+    # If you need any necessary themes or plugins, replace them.
     wp core download --path=/var/www/html --allow-root && \
     wp --allow-root --path=/var/www/html config create \
       --dbhost=mysql \
