@@ -1,3 +1,4 @@
+
 name: "Deploy K8s in AWS"
 
 on:
@@ -13,6 +14,8 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with you repo (user/repo).
 
 jobs:
   terraform-CI:
@@ -49,6 +52,19 @@ jobs:
        if: "!contains(github.event.head_commit.message, 'destroy')"
        run: terraform apply -auto-approve -lock=false
 
+     - name: Delete Webhook
+       if: contains(github.event.head_commit.message, 'destroy')
+       env:
+          SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
+       run: |
+          bash $SCRIPT_DIR/del-webhook.sh
+
+     - name: PreDestroy
+       if: contains(github.event.head_commit.message, 'destroy')
+       env:
+        SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
+       run: bash  $SCRIPT_DIR/del_infrastructure.sh
+
      - name: Terraform Destroy
        if: contains(github.event.head_commit.message, 'destroy')
        run: terraform destroy -auto-approve -lock=false
@@ -79,43 +95,43 @@ jobs:
       - name: Get Kubeconfig
         run: aws eks update-kubeconfig --region us-east-1 --name mondyk8awsklas
 
-      - name: Check Services/Pods/Deployment Before Deploy
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
+      - name: Install Tekton
+        if: contains(github.event.head_commit.message, 'init')
+        env:
+          DOCKER_USERNAME : ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD : ${{ secrets.DOCKER_PASSWORD }}
+          SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
+        run: bash  $SCRIPT_DIR/install-tekton.sh
 
-      - name: Apply Kubernetes manifest
-        run: kubectl apply -f mysql.yml
+      - name: Wait for 60 seconds
+        if: contains(github.event.head_commit.message, 'init')
+        run: sleep 60s
 
-      - name: Wait for 80 seconds()
-        run: sleep 80s
-
-      - name: Check Mysql Pods
-        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
-
-      - name: Create DB/Tables
+      - name: Create Webhook
+        if: contains(github.event.head_commit.message, 'init')
         env:
           SCRIPT_DIR: ${{ github.workspace }}/terraform_aws/scripts
-        run: bash  $SCRIPT_DIR/mysql.sh
+        run: |
+          external_ip=$(kubectl get svc ingress-nginx-controller -n ingress-nginx  -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          echo "External IP: $external_ip"
+          bash $SCRIPT_DIR/add-webhook.sh $external_ip
+      
+      - name: Create empty commit
+        if: contains(github.event.head_commit.message, 'init')
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git pull
+          git commit --allow-empty -m "Empty commit"
+          git push
 
-      - name: Wait for 20 seconds()
-        run: sleep 20s
+      - name: Wait for 5 minutes
+        run: sleep 300s
 
-      - name: Delete Mysql
-        run: kubectl delete service mysql && kubectl delete pods --selector app=mysql && kubectl delete deployment mysql
+      - name: Check Service
+        run: kubectl get service
 
-      - name: Wait for 10 seconds()
-        run: sleep 10s
-
-      - name: Check Services/Pods/Deployments after Delete
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
-
-      - name: Apply Kubernetes manifest after Delete
-        run: kubectl apply -f mysql.yml
-
-      - name: Wait for 80 seconds()
-        run: sleep 80s
-
-      - name: Check Services/Pods/Deployments after repeated Deploy
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
-
-      - name: Check Mysql Pods after repeated Deploy
-        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
+      - name: Get IP address
+        run: nslookup $(kubectl get svc wordpress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')

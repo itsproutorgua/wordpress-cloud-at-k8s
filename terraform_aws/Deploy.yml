@@ -1,0 +1,168 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  labels:
+    type: local
+spec:
+  storageClassName: fast-disks
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"    
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-pv
+  labels:
+    type: local
+spec:
+  storageClassName: fast-disks
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---    
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: fast-disks
+  volumeName: mysql-pv  
+  resources:
+    requests:
+      storage: 2Gi
+---     
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-claim
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: fast-disks
+  volumeName: wp-pv 
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+      containers:
+        - name: mysql
+          image: mysql
+          args:
+            - "--default-authentication-plugin=mysql_native_password"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "wordsec"     # Replace with you dbpass.
+            - name: MYSQL_DATABASE
+              value: "DataBaseMon"
+            - name: MYSQL_USER
+              value: "MyWordPress"
+            - name: MYSQL_PASSWORD
+              value: "wordsec"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - name: mysql
+      port: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wp-pv-claim
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+      initContainers:
+        - name: init
+          image: dmonakh/init_db_wp:v1 # Replace with you image name.
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      containers:
+        - name: wordpress
+          image: wordpress:latest
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: "mysql"
+            - name: WORDPRESS_DB_NAME
+              value: "WordPress"
+            - name: WORDPRESS_DB_USER
+              value: "root"
+            - name: WORDPRESS_DB_PASSWORD
+              value: "wordsec" # Replace with you dbpass.
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+spec:
+  selector:
+    app: wordpress
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer 

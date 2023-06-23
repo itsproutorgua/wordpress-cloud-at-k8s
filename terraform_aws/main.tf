@@ -5,12 +5,11 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "mondyk8awsklas"
+  cluster_name = "mondyk8awsklas" # Replace a name for your cluster.
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.18.1"
 
   name                 = "k8s-vpc"
   cidr                 = "172.16.0.0/16"
@@ -51,11 +50,17 @@ module "eks" {
   enable_irsa = true
   eks_managed_node_groups = {
   main = {
-    desired_capacity = 2
-    max_capacity     = 2
-    min_capacity     = 0
+      min_size     = 2
+      max_size     = 10
+      desired_size = 2
 
     instance_type = "t3.medium"
+    capacity_type = "SPOT"
     }
   }
+
+  depends_on = [module.vpc.k8s-vpc]
+}
+resource "aws_route53_zone" "dns" {
+  name     = "it-sproutdevteam.fun" # Replace with your domain.
 }
