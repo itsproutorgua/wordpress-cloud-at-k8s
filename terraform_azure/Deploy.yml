@@ -47,7 +47,7 @@ spec:
             - "--default-authentication-plugin=mysql_native_password"
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "wordsec"     # Replace with you dbpass.
+              value: "wordsec"     # Replace with your dbpass.
             - name: MYSQL_DATABASE
               value: "DataBaseMon"
             - name: MYSQL_USER
@@ -94,7 +94,7 @@ spec:
             claimName: mysql-pvc
       initContainers:
         - name: init
-          image: dmonakh/init_db_wp:v1 # Replace with you image name.
+          image: dmonakh/init_db_wp:v1 # Replace with your image name:tag.
           volumeMounts:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html
@@ -111,7 +111,7 @@ spec:
             - name: WORDPRESS_DB_USER
               value: "root"
             - name: WORDPRESS_DB_PASSWORD
-              value: "wordsec" # Replace with you dbpass.
+              value: "wordsec" # Replace with your dbpass.
           ports:
             - containerPort: 80
           volumeMounts:

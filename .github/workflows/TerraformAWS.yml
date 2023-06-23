@@ -1,5 +1,4 @@
-
-name: "Deploy K8s in AWS"
+name: Wordpress-Tekton-atK8s-inAWS
 
 on:
   push:
@@ -15,7 +14,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with you repo (user/repo).
+  REPO: itsproutorgua/wordpress-cloud-at-k8s # Replace with your repo (user/repo).
 
 jobs:
   terraform-CI:

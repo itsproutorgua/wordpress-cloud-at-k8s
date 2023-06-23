@@ -1,13 +1,13 @@
 <summary>Table of Contents</summary>
 
-- [Prequirements](#prequirements)
+- [Prerequisites](#prerequisites)
 - [Configuration](#configuration)
 - [Installation](#installation)
 
 </details>
 
 ---
-### Prequirements
+### Prerequisites
 
 To implement this project, you will need the following components and accounts:
 
@@ -53,11 +53,11 @@ To deploy WordPress with Tekton, follow these steps:
 
 5. Create and configure the secrets required for accessing the database and other resources.
 
-6. Update the `terraform_azure/pipeline/triger.yaml` with your repo url and docker image for Tekton, or `terraform_azure/pipeline/clonebuildpush.yaml` with your repo raw.
+6. Update the `terraform_azure/pipeline/triger.yaml` with your repo URL and docker image for Tekton, or `terraform_azure/pipeline/clonebuildpush.yaml` with your repo raw.
 
-7. To create a Wordpress initialization image:
+7. To create a WordPress initialization image:
 
-  - Update the `terraform_azure/scripts/setup-db-wp.sh` with your desired wordpress site data, in the url box, specify your domain, in the dbpass, specify root password and keep him. (If you need any necessary themes or     plugins, specify them in this script.)
+  - Update the `terraform_azure/scripts/setup-db-wp.sh` with your desired WordPress site data, in the URL box, specify your domain, in the dbpass, specify root password and keep him. (If you need any necessary themes or plugins, specify them in this script.)
   - Update the `terraform_azure/Dockerfile` in the ENV PASSWORD box, specify the root password you used in the last step. 
 
 8. Update the `terraform_azure/Deploy.yml`, be sure to use a password like in the last step, change the name for your image.

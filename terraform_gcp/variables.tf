@@ -5,19 +5,19 @@ variable "def_name" {
 variable "project_id" {}
 
 variable "region_prj" {
-  default = "us-central1" # Replace with you region.
+  default = "us-central1" # Replace with your region.
 }
 
 variable "zone_prj" {
-  default = "us-central1-a" # Replace with you zone.
+  default = "us-central1-a" # Replace with your zone.
 }
 
 variable "sa_name" {
-  default = "sa-tfstate" # Replace with you name for tfstate.
+  default = "sa-tfstate" # Replace with your name for tfstate.
 }
 
 variable "sa_account" {
-  default = "git-490@tidy-vent-384809.iam.gserviceaccount.com" # Replace with you service account.
+  default = "git-490@tidy-vent-384809.iam.gserviceaccount.com" # Replace with your service account.
 }
 
 variable "domain" {

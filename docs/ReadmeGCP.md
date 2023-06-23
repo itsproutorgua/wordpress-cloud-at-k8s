@@ -1,13 +1,13 @@
 <summary>Table of Contents</summary>
 
-- [Prequirements](#prequirements)
+- [Prerequisites](#prerequisites)
 - [Configuration](#configuration)
 - [Installation](#installation)
 
 </details>
 
 ---
-### Prequirements
+### Prerequisites
 
 To implement this project, you will need the following components and accounts:
 
@@ -25,7 +25,7 @@ Make sure you have all the required accounts and components for a successful pro
 First, you need to configure the secret in repo:
 
 - `GCP_PROJECT_ID`: Your GCP project ID.
-- `GCP_CREDENTIALS` : Your JSON key for authentication a coded with base64.
+- `GCP_CREDENTIALS` : Your JSON key for authentication, a coded with base64.
 - `GH_TOKEN`: Your token with permission by webhook or repo management. ([To create a token, use](https://github.com/settings/tokens))
 - `DOCKER_USERNAME`: Your username in Docker Hub.
 - `DOCKER_PASSWORD`: Your password in Docker Hub.
@@ -53,11 +53,11 @@ To deploy WordPress with Tekton, follow these steps:
 
 5. Create and configure the secrets required for accessing the database and other resources.
 
-6. Update the `terraform_gcp/pipeline/triger.yaml` with your repo url and docker image for Tekton, or `terraform_gcp/pipeline/clonebuildpush.yaml` with your repo raw.
+6. Update the `terraform_gcp/pipeline/triger.yaml` with your repo URL and docker image for Tekton, or `terraform_gcp/pipeline/clonebuildpush.yaml` with your repo raw.
 
-7. To create a Wordpress initialization image:
+7. To create a WordPress initialization image:
 
-  - Update the `terraform_gcp/scripts/setup-db-wp.sh` with your desired wordpress site data, in the url box, specify your domain, in the dbpass, specify root password and keep him. (If you need any necessary themes or     plugins, specify them in this script.)
+  - Update the `terraform_gcp/scripts/setup-db-wp.sh` with your desired WordPress site data, in the URL box, specify your domain, in the dbpass, specify root password and keep him. (If you need any necessary themes or plugins, specify them in this script.)
   - Update the `terraform_gcp/Dockerfile` in the ENV PASSWORD box, specify the root password you used in the last step. 
 
 8. Update the `terraform_gcp/Deploy.yml`, be sure to use a password like in the last step, change the name for your image.
