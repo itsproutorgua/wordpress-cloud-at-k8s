@@ -94,7 +94,7 @@ spec:
             claimName: mysql-pvc
       initContainers:
         - name: init
-          image: dmonakh/init_db_wp:v1 # Replace with your image name:tag
+          image: dmonakh/init_db_wp:v1 # Replace with your image name:tag.
           volumeMounts:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html
