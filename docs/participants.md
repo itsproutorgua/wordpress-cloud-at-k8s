@@ -4,11 +4,11 @@
 
 ## Participants
 
-- [![Maksym Blinov](https://media.licdn.com/dms/image/D4E35AQETNv7zHvje8A/profile-framedphoto-shrink_800_800/0/1685177964028?e=1687784400&v=beta&t=wUi4WzEHSsyZ8zF458OcqkgJ7vUJjY2GakgPpBd3ijw)](https://www.linkedin.com/in/blinovmaxim/)
+- [![Maksym Blinov](https://media.licdn.com/dms/image/D4E35AQETNv7zHvje8A/profile-framedphoto-shrink_800_800/0/1685177964028?e=1689130800&v=beta&t=Eixdu4SShkNVIeK8Y2Z9x3kjjhiSOzNvXiIoBgxi_R4)](https://www.linkedin.com/in/blinovmaxim/)
 
 - [![Denys Monakh](https://media.licdn.com/dms/image/D4E03AQGyETHNDp7iJA/profile-displayphoto-shrink_800_800/0/1664449227723?e=1692835200&v=beta&t=hbblTC2lRxD9-_qko7UuSLaeF4YPGXPNpvoTdw_Bpoc)](https://www.linkedin.com/in/mondydude/)
 
-- [![Leonid Pistryi](https://media.licdn.com/dms/image/D4D35AQG5LU48rADx5g/profile-framedphoto-shrink_200_200/0/1687006282330?e=1687784400&v=beta&t=8F7HTXjepexE9J8dSKXkl6PgHw7pGYvbWjE7WXWp69U)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
+- [![Leonid Pistryi](https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png)](https://www.linkedin.com/in/leonid-pistryi-141273199/)
 
 - [![Igor Postavnichiy](https://media.licdn.com/dms/image/D4D03AQH1jYjkB-xbzg/profile-displayphoto-shrink_200_200/0/1678723970229?e=1692835200&v=beta&t=KE0cxzTuKbttdUJ0-uDjJbIKm4q_3IgRJj_HO9Ke2P4)](https://www.linkedin.com/in/igor-postavnichiy/)
 
